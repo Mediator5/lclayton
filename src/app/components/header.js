@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -12,30 +12,36 @@ const NAV_ITEMS = [
         label: "About",
         href: "/about",
         submenu: [
-            { label: "Our Story", href: "/about/our-story" },
-            { label: "Mission & Vision", href: "/about/mission" },
-            { label: "Leadership Team", href: "/about/team" },
-            { label: "Careers", href: "/about/careers" },
+            { label: "Who We Are", href: "/about" },
+            { label: "Meet Our Team", href: "/about/#team" },
+            { label: "Our Values", href: "/value" },
+            { label: "Our Process", href: "/process" },
+            { label: "Who We Serve", href: "/who-we-serve" },
         ],
     },
     {
         label: "Services",
         href: "/services",
         submenu: [
+            { label: "Financial Employes", href: "services/employment-benefits-for-federal-employees" },
+            { label: "Retirement Planning For Pre-Retirees", href: "/services/retirement-planning-for-pre-retirees" },
+            { label: "Retirement Planning for Retired Individuals", href: "/services/retirement-planning-for-retired-individuals" },
+            { label: "Tax Strategy", href: "/services/tax-strategy" },
+            { label: "Estate Planning", href: "/services/estate-planning" },
+            { label: "Wealth Management", href: "/services/wealth-management" },
+            { label: "Small Business Retirement Plans", href: "/services/small-business-retirement-plans" },
             { label: "Financial Planning", href: "/services/financial-planning" },
-            { label: "Investment Advisory", href: "/services/investment-advisory" },
-            { label: "Tax Strategies", href: "/services/tax-strategies" },
-            { label: "Risk Management", href: "/services/risk-management" },
+            { label: "Education Planning", href: "/services/education-planning" },
         ],
     },
     {
         label: "Resources",
         href: "/resources",
         submenu: [
-            { label: "Blog & Insights", href: "/resources/blog" },
-            { label: "Case Studies", href: "/resources/case-studies" },
-            { label: "Whitepapers", href: "/resources/whitepapers" },
-            { label: "FAQs", href: "/resources/faqs" },
+            { label: "Financial Calculators", href: "/calculator-library" },
+            { label: "Useful Links", href: "/useful-websites" },
+            { label: "Blogs", href: "/blog" },
+            { label: "LPL Weekly Market Commentary", href: "https://www.lpl.com/research/weekly-market-commentary.html" },
         ],
     },
     { label: "Contact", href: "/contact" },
@@ -113,14 +119,15 @@ function Dropdown({ items, isOpen }) {
     return (
         <div
             className={`
-        absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56
-        bg-white rounded-xl shadow-2xl border border-slate-100
-        overflow-hidden transition-all duration-200 origin-top z-50
-        ${isOpen
+                absolute top-full left-1/2 -translate-x-1/2 w-56
+                bg-white rounded-xl shadow-2xl border border-slate-100
+                overflow-hidden transition-all duration-200 origin-top z-50
+                ${isOpen
                     ? "opacity-100 scale-y-100 translate-y-0 pointer-events-auto"
                     : "opacity-0 scale-y-95 -translate-y-1 pointer-events-none"
                 }
-      `}
+            `}
+        /* No mt-3 here — the gap is covered by the bridge below */
         >
             {/* Arrow pip */}
             <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l border-t border-slate-100 rotate-45 z-10" />
@@ -131,7 +138,7 @@ function Dropdown({ items, isOpen }) {
                         <Link
                             href={item.href}
                             className="flex items-center gap-3 px-5 py-3 text-sm text-slate-600
-                         hover:text-navy hover:bg-slate-50 transition-colors duration-150 group/item"
+                                       hover:text-navy hover:bg-slate-50 transition-colors duration-150 group/item"
                         >
                             <span className="w-1.5 h-1.5 rounded-full bg-gold opacity-0 group-hover/item:opacity-100 transition-opacity shrink-0" />
                             {item.label}
@@ -143,10 +150,72 @@ function Dropdown({ items, isOpen }) {
     );
 }
 
+// ─── NavItem with close-delay ─────────────────────────────────────────────────
+
+function NavItem({ item }) {
+    const [open, setOpen] = useState(false);
+    const closeTimer = useRef(null);
+
+    const handleEnter = () => {
+        if (closeTimer.current) clearTimeout(closeTimer.current);
+        setOpen(true);
+    };
+
+    const handleLeave = () => {
+        // 120 ms grace period — enough to move the mouse into the dropdown
+        closeTimer.current = setTimeout(() => setOpen(false), 120);
+    };
+
+    if (!item.submenu) {
+        return (
+            <Link
+                href={item.href}
+                className="flex items-center px-4 py-2 text-sm font-medium rounded-lg
+                           text-slate-600 hover:text-navy hover:bg-slate-50
+                           transition-all duration-200"
+            >
+                {item.label}
+            </Link>
+        );
+    }
+
+    return (
+        <div
+            className="relative"
+            onMouseEnter={handleEnter}
+            onMouseLeave={handleLeave}
+        >
+            <Link
+                href={item.href}
+                className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${open ? "text-navy bg-slate-50" : "text-slate-600 hover:text-navy hover:bg-slate-50"
+                    }`}
+            >
+                {item.label}
+                <ChevronDown open={open} />
+            </Link>
+
+            {/* Active underline */}
+            <span
+                className={`absolute bottom-0 left-4 right-4 h-0.5 bg-gold rounded-full transition-opacity duration-200 ${open ? "opacity-100" : "opacity-0"
+                    }`}
+            />
+
+            {/*
+              ── BRIDGE ──────────────────────────────────────────────────────
+              An invisible 12px-tall strip that sits between the nav link and
+              the dropdown panel, filling the gap so the mouse never leaves
+              the hover zone as it travels downward.
+            */}
+            <div className="absolute top-full left-0 right-0 h-3" />
+
+            <Dropdown items={item.submenu} isOpen={open} />
+        </div>
+    );
+}
+
 // ─── Header ───────────────────────────────────────────────────────────────────
 
 export default function Header() {
-    const [openMenu, setOpenMenu] = useState(null);
     const [mobileOpen, setMobileOpen] = useState(false);
     const [mobileExpanded, setMobileExpanded] = useState(null);
     const [scrolled, setScrolled] = useState(false);
@@ -163,7 +232,7 @@ export default function Header() {
                 }`}
         >
 
-            {/* ── TOP BAR ─────────────────────────────────────────────────────── */}
+            {/* ── TOP BAR ─────────────────────────────────────────────────── */}
             <div className="bg-navy text-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-10 text-xs">
@@ -181,8 +250,8 @@ export default function Header() {
                                     href="#"
                                     aria-label={label}
                                     className="w-7 h-7 flex items-center justify-center rounded-full
-                             text-slate-300 hover:text-white hover:bg-white/10
-                             transition-all duration-200"
+                                               text-slate-300 hover:text-white hover:bg-white/10
+                                               transition-all duration-200"
                                 >
                                     <Icon />
                                 </a>
@@ -214,8 +283,8 @@ export default function Header() {
                             <a
                                 href="#"
                                 className="flex items-center gap-1.5 bg-gold hover:bg-gold-muted
-                           text-navy-deep font-semibold text-xs uppercase tracking-widest
-                           px-4 py-1.5 rounded-full transition-all duration-200 hover:shadow-md"
+                                           text-navy-deep font-semibold text-xs uppercase tracking-widest
+                                           px-4 py-1.5 rounded-full transition-all duration-200 hover:shadow-md"
                             >
                                 Client Login
                             </a>
@@ -225,7 +294,7 @@ export default function Header() {
                 </div>
             </div>
 
-            {/* ── MAIN NAV ─────────────────────────────────────────────────────── */}
+            {/* ── MAIN NAV ────────────────────────────────────────────────── */}
             <div className="bg-white border-b border-slate-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-20">
@@ -235,50 +304,24 @@ export default function Header() {
                             <Image
                                 className="dark:invert"
                                 src="/L CLAYTON.jpeg"
-                                alt="Next.js logo"
+                                alt="L. Clayton Services"
                                 width={80}
                                 height={80}
                                 priority
                             />
                         </Link>
 
-                        {/* Desktop nav */}
+                        {/* Desktop nav — each item manages its own open state */}
                         <nav className="hidden lg:flex items-center gap-1">
                             {NAV_ITEMS.map((item) => (
-                                <div
-                                    key={item.label}
-                                    className="relative group"
-                                    onMouseEnter={() => item.submenu && setOpenMenu(item.label)}
-                                    onMouseLeave={() => setOpenMenu(null)}
-                                >
-                                    <Link
-                                        href={item.href}
-                                        className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${openMenu === item.label
-                                            ? "text-navy bg-slate-50"
-                                            : "text-slate-600 hover:text-navy hover:bg-slate-50"
-                                            }`}
-                                    >
-                                        {item.label}
-                                        {item.submenu && <ChevronDown open={openMenu === item.label} />}
-                                    </Link>
-
-                                    {/* Active underline */}
-                                    <span
-                                        className={`absolute bottom-0 left-4 right-4 h-0.5 bg-gold rounded-full transition-all duration-200 ${openMenu === item.label ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                                            }`}
-                                    />
-
-                                    {item.submenu && (
-                                        <Dropdown items={item.submenu} isOpen={openMenu === item.label} />
-                                    )}
-                                </div>
+                                <NavItem key={item.label} item={item} />
                             ))}
 
                             <Link
                                 href="/contact"
                                 className="ml-4 px-5 py-2.5 bg-navy hover:bg-navy-dark text-white
-                           font-heading text-sm font-semibold rounded-lg
-                           transition-all duration-200 hover:shadow-lg hover:-translate-y-px"
+                                           font-heading text-sm font-semibold rounded-lg
+                                           transition-all duration-200 hover:shadow-lg hover:-translate-y-px"
                             >
                                 Get Started
                             </Link>
@@ -296,7 +339,7 @@ export default function Header() {
                     </div>
                 </div>
 
-                {/* ── MOBILE MENU ──────────────────────────────────────────────── */}
+                {/* ── MOBILE MENU ─────────────────────────────────────────── */}
                 <div
                     className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileOpen ? "max-h-screen border-t border-slate-100" : "max-h-0"
                         }`}
@@ -320,7 +363,7 @@ export default function Header() {
                                     <Link
                                         href={item.href}
                                         className="flex-1 py-2.5 px-3 text-sm font-medium text-slate-700
-                               hover:text-navy rounded-lg hover:bg-slate-50 transition-colors"
+                                                   hover:text-navy rounded-lg hover:bg-slate-50 transition-colors"
                                         onClick={() => setMobileOpen(false)}
                                     >
                                         {item.label}
@@ -350,7 +393,7 @@ export default function Header() {
                                                     <Link
                                                         href={sub.href}
                                                         className="block py-2 px-2 text-sm text-slate-500
-                                       hover:text-navy hover:bg-slate-50 rounded-lg transition-colors"
+                                                                   hover:text-navy hover:bg-slate-50 rounded-lg transition-colors"
                                                         onClick={() => setMobileOpen(false)}
                                                     >
                                                         {sub.label}
@@ -368,7 +411,7 @@ export default function Header() {
                             <Link
                                 href="/contact"
                                 className="block text-center py-3 bg-navy hover:bg-navy-dark
-                           text-white font-heading text-sm font-semibold rounded-lg transition-colors"
+                                           text-white font-heading text-sm font-semibold rounded-lg transition-colors"
                                 onClick={() => setMobileOpen(false)}
                             >
                                 Get Started

@@ -340,7 +340,7 @@ function MeetTheTeam() {
         .tc-about:hover { box-shadow: 0 28px 64px -12px rgba(26,58,92,0.13); }
       `}</style>
 
-            <section ref={ref} className="font-body bg-white py-24 lg:py-32 overflow-hidden">
+            <section ref={ref} className="font-body bg-white py-24 lg:py-32 overflow-hidden" id="team">
                 <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
 
                     <div className={`max-w-xl mb-16 transition-all duration-700 ease-out ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
