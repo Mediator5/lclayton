@@ -32,7 +32,7 @@ const MILESTONES = [
     { year: "2003", event: "Jeffrey begins his career as a financial advisor, building deep expertise in retirement and wealth planning." },
     { year: "2007", event: "Recruited to the Washington D.C. area to lead a team of new financial advisors — sparking a passion for working with clients one-on-one." },
     { year: "2009", event: "Jeffrey earns the CERTIFIED FINANCIAL PLANNER™ (CFP®) designation, cementing his commitment to professional excellence." },
-    { year: "2011", event: "L. Clayton Services LLC is founded as an independent, 100% virtual practice built to deliver truly personalized financial guidance." },
+    { year: "2011", event: "L. Clayton Services Inc is founded as an independent, 100% virtual practice built to deliver truly personalized financial guidance." },
     { year: "Today", event: "Serving clients across multiple states with clarity, honesty, and a relentless focus on their long-term financial well-being." },
 ];
 
@@ -43,7 +43,7 @@ const TEAM = [
         phone: "301-563-9700", email: "jeffrey.settle@lpl.com",
         initials: "JS", tenure: "Advisor since 2003 · Founded L. Clayton Services 2011",
         bio: [
-            "As Founder and Financial Advisor at L. Clayton Services LLC, Jeffrey brings over 20 years of experience helping individuals and families pursue their financial goals with clarity and confidence. He specializes in retirement planning, tax strategy, and wealth management.",
+            "As Founder and Financial Advisor at L. Clayton Services Inc, Jeffrey brings over 20 years of experience helping individuals and families pursue their financial goals with clarity and confidence. He specializes in retirement planning, tax strategy, and wealth management.",
             "Jeffrey obtained the CERTIFIED FINANCIAL PLANNER™ (CFP®) designation in 2009. He holds a bachelor's degree in Finance with a minor in Sociology from Virginia Tech, and holds FINRA Series 7, Series 24, and Series 66 licenses through LPL Financial, along with state insurance and annuity licenses.",
             "After being recruited to the D.C. area in 2007 to lead a team of new advisors, Jeffrey discovered his passion for working with clients one-on-one. In 2011, he became an independent advisor so he could have the freedom and resources to deliver truly personalized advice, tools, and services.",
             "What he loves most? Giving someone the green light to retire — or to take that dream trip — because they have saved and invested wisely along the way. Outside of work, he enjoys time with his wife Jill and their two children, and is an avid drummer.",
@@ -151,7 +151,7 @@ function PageHero() {
                         </h1>
 
                         <p className={`${fu("delay-300")} font-body text-slate-300 leading-relaxed mb-10 max-w-2xl text-[clamp(1rem,1.5vw,1.15rem)]`}>
-                            L. Clayton Services LLC is a 100% virtual financial planning practice — making expert,
+                            L. Clayton Services Inc is a 100% virtual financial planning practice — making expert,
                             personalized guidance accessible to anyone who believes they deserve clarity, honesty,
                             and a plan built specifically around their life.
                         </p>
@@ -195,7 +195,7 @@ function OurCommitment() {
                             <em className="not-italic text-gold">Matters Most to You</em>
                         </h2>
                         <p className="font-body text-slate-500 leading-relaxed mb-4 text-sm">
-                            At L. Clayton Services LLC, we understand that you are entrusting us with significant
+                            At L. Clayton Services Inc, we understand that you are entrusting us with significant
                             aspects of your life. We take that responsibility seriously and are dedicated to getting
                             everything right — from the very big to the very small.
                         </p>
@@ -227,7 +227,7 @@ function OurCommitment() {
                                 </div>
                                 <div>
                                     <div className="font-heading text-white text-sm font-bold">Jeffrey Settle, CFP®</div>
-                                    <div className="font-body text-slate-400 text-xs">Founder, L. Clayton Services LLC</div>
+                                    <div className="font-body text-slate-400 text-xs">Founder, L. Clayton Services Inc</div>
                                 </div>
                             </footer>
                         </blockquote>
@@ -464,7 +464,7 @@ function AboutCTA() {
                             </h2>
                             <p className="font-body text-slate-300 text-sm leading-relaxed">
                                 We are here to help you work toward your financial goals with confidence.
-                                Contact us today to learn how L. Clayton Services LLC can serve you.
+                                Contact us today to learn how L. Clayton Services Inc can serve you.
                             </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-3 shrink-0">

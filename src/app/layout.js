@@ -16,7 +16,12 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "L CLAYTON SERVICES",
   description: "financial website",
+    icons: {
+    icon: '/icon.png',
+  },
 };
+
+
 
 export default function RootLayout({ children }) {
   return (

@@ -292,7 +292,7 @@ export default function Footer() {
 
                             {/* Copyright */}
                             <p className="font-body text-slate-500 text-xs">
-                                © {new Date().getFullYear()} L. Clayton Services LLC. All rights reserved.
+                                © {new Date().getFullYear()} L. Clayton Services Inc. All rights reserved.
                             </p>
 
                             {/* Social icons */}

@@ -6,9 +6,9 @@ import Link from "next/link";
 // ─── Static Data ──────────────────────────────────────────────────────────────
 
 const STATS = [
-  { value: "20",  prefix: "",  suffix: "+", label: "Years of Experience"    },
-  { value: "2",   prefix: "$", suffix: "B+", label: "Assets Under Guidance" },
-  { value: "98",  prefix: "",  suffix: "%",  label: "Client Retention Rate" },
+  { value: "20", prefix: "", suffix: "+", label: "Years of Experience" },
+  { value: "2", prefix: "$", suffix: "B+", label: "Assets Under Guidance" },
+  { value: "98", prefix: "", suffix: "%", label: "Client Retention Rate" },
 ];
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
@@ -43,7 +43,7 @@ function useCountUp(target, duration = 1800, active = false) {
     const step = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      const eased    = 1 - Math.pow(1 - progress, 3);
+      const eased = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(eased * target));
       if (progress < 1) requestAnimationFrame(step);
       else setCount(target);
@@ -76,7 +76,7 @@ function StatCard({ prefix, value, suffix, label, animate }) {
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 
 export default function Hero() {
-  const [visible,      setVisible]      = useState(false);
+  const [visible, setVisible] = useState(false);
   const [statsVisible, setStatsVisible] = useState(false);
   const statsRef = useRef(null);
 
@@ -98,8 +98,7 @@ export default function Hero() {
 
   // Shared fade-up class builder
   const fadeUp = (delayClass = "") =>
-    `transition-all duration-700 ease-out ${delayClass} ${
-      visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-7"
+    `transition-all duration-700 ease-out ${delayClass} ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-7"
     }`;
 
   return (
@@ -205,7 +204,7 @@ export default function Hero() {
             <div className={`${fadeUp("delay-100")} inline-flex items-center gap-3 mb-8`}>
               <span className="w-8 h-px bg-gold" />
               <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold">
-                L. Clayton Services LLC
+                L. Clayton Services Inc
               </span>
             </div>
 
