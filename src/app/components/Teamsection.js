@@ -13,16 +13,16 @@ const TEAM = [
         initials: "JS",
         specialties: ["Retirement Planning", "Tax Strategy", "Federal Benefits", "Estate Planning"],
     },
-    {
-        name: "Sheila Davis",
-        credentials: "",
-        role: "Manager of Client Relations",
-        phone: "301-563-9701",
-        email: "sheila.davis@lpl.com",
-        bio: "Sheila is the heart of our client experience. She ensures every interaction is seamless, every question is answered promptly, and every client feels genuinely valued — from the very first call through every milestone that follows.",
-        initials: "SD",
-        specialties: ["Client Experience", "Onboarding", "Account Services", "Communications"],
-    },
+    // {
+    //     name: "Sheila Davis",
+    //     credentials: "",
+    //     role: "Manager of Client Relations",
+    //     phone: "301-563-9701",
+    //     email: "sheila.davis@lpl.com",
+    //     bio: "Sheila is the heart of our client experience. She ensures every interaction is seamless, every question is answered promptly, and every client feels genuinely valued — from the very first call through every milestone that follows.",
+    //     initials: "SD",
+    //     specialties: ["Client Experience", "Onboarding", "Account Services", "Communications"],
+    // },
 ];
 
 function useInView(threshold = 0.1) {

@@ -32,7 +32,7 @@ const MILESTONES = [
     { year: "2003", event: "Latravia begins his career as a financial advisor, building deep expertise in retirement and wealth planning." },
     { year: "2007", event: "Recruited to the Washington D.C. area to lead a team of new financial advisors — sparking a passion for working with clients one-on-one." },
     { year: "2009", event: "Latravia earns the CERTIFIED FINANCIAL PLANNER™ (CFP®) designation, cementing his commitment to professional excellence." },
-    { year: "2011", event: "L. Clayton Services Inc is founded as an independent, 100% virtual practice built to deliver truly personalized financial guidance." },
+    { year: "2015", event: "L Clayton Services Inc is founded as an independent, 100% virtual practice built to deliver truly personalized financial guidance." },
     { year: "Today", event: "Serving clients across multiple states with clarity, honesty, and a relentless focus on their long-term financial well-being." },
 ];
 
@@ -41,11 +41,11 @@ const TEAM = [
         name: "Latravia Clayton", credentials: "CFP®",
         role: "Financial Advisor & Founder",
         phone: "800-334-9809", email: "contact@lclaytonservicesinc.com",
-        initials: "LC", tenure: "Advisor since 2003 · Founded L. Clayton Services 2011",
+        initials: "LC", tenure: "Advisor since 2003 · Founded L Clayton Services 2015",
         bio: [
             "As Founder and Financial Advisor at L Clayton Services Inc. Latravia brings over 20 years of experience helping individuals and families pursue their financial goals with clarity and confidence. He specializes in retirement planning, tax strategy, and wealth management.",
             "Latravia obtained the CERTIFIED FINANCIAL PLANNER™ (CFP®) designation in 2009. He holds a bachelor's degree in Finance with a minor in Sociology from Virginia Tech, and holds FINRA Series 7, Series 24, and Series 66 licenses through LPL Financial, along with state insurance and annuity licenses.",
-            "After being recruited to the D.C. area in 2007 to lead a team of new advisors, Latravia discovered his passion for working with clients one-on-one. In 2011, he became an independent advisor so he could have the freedom and resources to deliver truly personalized advice, tools, and services.",
+            "After being recruited to the D.C. area in 2007 to lead a team of new advisors, Latravia discovered his passion for working with clients one-on-one. In 2015, he became an independent advisor so he could have the freedom and resources to deliver truly personalized advice, tools, and services.",
             "What he loves most? Giving someone the green light to retire — or to take that dream trip — because they have saved and invested wisely along the way. Outside of work, he enjoys time with his wife Jill and their two children, and is an avid drummer.",
         ],
         specialties: ["Retirement Planning", "Tax Strategy", "Wealth Management", "Federal Benefits", "Estate Planning"],
@@ -57,7 +57,7 @@ const TEAM = [
     //     phone: "301-563-9701", email: "sheila.davis@lpl.com",
     //     initials: "SD", tenure: "Client Relations Specialist",
     //     bio: [
-    //         "As Manager of Client Relations, Sheila is the heart of the L. Clayton Services client experience. She focuses on delivering a positive, personalized experience through proactive communication and efficient, thoughtful service.",
+    //         "As Manager of Client Relations, Sheila is the heart of the L Clayton Services client experience. She focuses on delivering a positive, personalized experience through proactive communication and efficient, thoughtful service.",
     //         "Sheila holds a bachelor's degree in Media Communications from the University of Pittsburgh. Her career has spanned the National Geographic Channel, the U.S. Department of Health and Human Services, UPMC, and Carnegie Mellon University.",
     //         "With a genuine talent for understanding client needs and providing tailored solutions, Sheila ensures that every interaction — from the very first call to your most important financial milestone — feels seamless and fully supported.",
     //         "Outside of work, she enjoys time with her husband and kids, bird-watching, and baking.",
@@ -147,18 +147,18 @@ function PageHero() {
                         <h1 className={`${fu("delay-200")} font-heading text-white leading-[1.1] mb-6 text-[clamp(2.4rem,5vw,4rem)]`}>
                             Your Partner for<br />
                             <em className="not-italic text-gold">Financial Guidance</em><br />
-                            Since 2011
+                            Since 2015
                         </h1>
 
                         <p className={`${fu("delay-300")} font-body text-slate-300 leading-relaxed mb-10 max-w-2xl text-[clamp(1rem,1.5vw,1.15rem)]`}>
-                            L. Clayton Services Inc is a 100% virtual financial planning practice — making expert,
+                            L Clayton Services Inc is a 100% virtual financial planning practice — making expert,
                             personalized guidance accessible to anyone who believes they deserve clarity, honesty,
                             and a plan built specifically around their life.
                         </p>
 
                         <div className={`${fu("delay-400")} flex flex-wrap gap-x-10 gap-y-5`}>
                             {[
-                                { value: "2011", label: "Year Founded" },
+                                { value: "2015", label: "Year Founded" },
                                 { value: "20+", label: "Years of Experience" },
                                 { value: "100%", label: "Virtual Practice" },
                             ].map((s) => (
@@ -227,7 +227,7 @@ function OurCommitment() {
                                 </div>
                                 <div>
                                     <div className="font-heading text-white text-sm font-bold">Latravia Clayton, CFP®</div>
-                                    <div className="font-body text-slate-400 text-xs">Founder, L. Clayton Services Inc</div>
+                                    <div className="font-body text-slate-400 text-xs">Founder, L Clayton Services In.c</div>
                                 </div>
                             </footer>
                         </blockquote>
@@ -464,7 +464,7 @@ function AboutCTA() {
                             </h2>
                             <p className="font-body text-slate-300 text-sm leading-relaxed">
                                 We are here to help you work toward your financial goals with confidence.
-                                Contact us today to learn how L. Clayton Services Inc can serve you.
+                                Contact us today to learn how L Clayton Services Inc can serve you.
                             </p>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-3 shrink-0">

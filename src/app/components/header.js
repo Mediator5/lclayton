@@ -304,7 +304,7 @@ export default function Header() {
                             <Image
                                 className="dark:invert"
                                 src="/L CLAYTON.jpeg"
-                                alt="L. Clayton Services"
+                                alt="L Clayton Services"
                                 width={80}
                                 height={80}
                                 priority

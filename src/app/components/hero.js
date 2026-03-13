@@ -204,7 +204,7 @@ export default function Hero() {
             <div className={`${fadeUp("delay-100")} inline-flex items-center gap-3 mb-8`}>
               <span className="w-8 h-px bg-gold" />
               <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold">
-                L. Clayton Services Inc
+                L Clayton Services Inc
               </span>
             </div>
 

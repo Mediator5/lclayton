@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const TESTIMONIALS = [
     {
-        quote: "L. Clayton Services completely changed how we think about retirement. They took something overwhelming and made it feel manageable. We finally have a real plan.",
+        quote: "L Clayton Services completely changed how we think about retirement. They took something overwhelming and made it feel manageable. We finally have a real plan.",
         name: "Robert & Linda M.",
         role: "Federal Retirees, Silver Spring MD",
         initials: "RM",
