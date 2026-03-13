@@ -477,7 +477,7 @@ function RetireeBenefits() {
                             </div>
                             <div className="text-left">
                                 <div className="font-heading text-white text-xs font-bold">Latravia Clayton, CFP&reg;</div>
-                                <div className="font-body text-slate-400 text-[10px]">Founder, L. Clayton Services Inc</div>
+                                <div className="font-body text-slate-400 text-[10px]">Founder, L Clayton Services Inc</div>
                             </div>
                         </div>
                     </div>

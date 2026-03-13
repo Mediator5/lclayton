@@ -429,7 +429,7 @@ function ProcessPillars() {
 
                                 <div className="relative z-10">
                                     <p className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold mb-4">
-                                        L. Clayton Services Inc
+                                        L Clayton Services Inc
                                     </p>
                                     <p className="font-heading text-white text-lg leading-relaxed italic">
                                         {i === 0
@@ -444,7 +444,7 @@ function ProcessPillars() {
                                     </div>
                                     <div>
                                         <div className="font-heading text-white text-sm font-bold">Latravia Clayton, CFP&reg;</div>
-                                        <div className="font-body text-slate-400 text-xs">Founder, L. Clayton Services Inc</div>
+                                        <div className="font-body text-slate-400 text-xs">Founder, L Clayton Services Inc</div>
                                     </div>
                                 </div>
                             </div>

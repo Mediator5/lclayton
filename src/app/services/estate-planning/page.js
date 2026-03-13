@@ -149,7 +149,7 @@ const FAQS = [
         a: "You should review your estate plan after any major life event — marriage, divorce, the birth of a child, the death of a beneficiary or executor, a significant change in assets, or a move to a different state. At minimum, a review every 3–5 years is recommended.",
     },
     {
-        q: "What role does L. Clayton Services Inc play in estate planning?",
+        q: "What role does L Clayton Services Inc play in estate planning?",
         a: "We work alongside your estate planning attorney — not in place of one. Our role is to coordinate the financial planning side: reviewing beneficiary designations, aligning your investments and accounts with your estate plan, identifying tax-saving opportunities, and ensuring your financial and legal documents work together seamlessly.",
     },
 ];
@@ -542,7 +542,7 @@ function AttorneyCoordination() {
                                     icon: "⚖️",
                                 },
                                 {
-                                    role: "L. Clayton Services Inc",
+                                    role: "L Clayton Services Inc",
                                     color: "border-gold/30",
                                     items: ["Coordinates financial accounts with the plan", "Reviews and aligns beneficiary designations", "Identifies estate and income tax opportunities", "Ensures retirement assets are integrated"],
                                     icon: "📊",
@@ -568,7 +568,7 @@ function AttorneyCoordination() {
                             <div className="bg-white/5 border border-white/10 rounded-2xl px-5 py-4">
                                 <p className="font-body text-slate-500 text-[11px] leading-relaxed">
                                     <span className="text-gold font-bold">Legal Disclaimer: </span>
-                                    L. Clayton Services Inc and LPL Financial do not provide legal advice or services.
+                                    L Clayton Services Inc and LPL Financial do not provide legal advice or services.
                                     Please consult your legal advisor or estate planning attorney regarding your specific situation.
                                 </p>
                             </div>

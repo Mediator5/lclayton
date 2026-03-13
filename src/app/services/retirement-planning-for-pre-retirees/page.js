@@ -541,7 +541,7 @@ function PreRetireeCTA() {
                                 your numbers honestly and show you exactly where you stand — and what to do next.
                             </p>
                             <p className="font-body text-slate-500 text-xs mt-4 border-l-2 border-slate-600 pl-3 leading-relaxed">
-                                L. Clayton Services Inc and LPL Financial do not provide legal advice or services.
+                                L Clayton Services Inc and LPL Financial do not provide legal advice or services.
                                 Please consult your legal advisor regarding your specific situation.
                             </p>
                         </div>

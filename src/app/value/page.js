@@ -343,7 +343,7 @@ function ValuesInPractice() {
 
                                 <div className="relative z-10">
                                     <p className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold mb-4">
-                                        L. Clayton Services Inc
+                                        L Clayton Services Inc
                                     </p>
                                     <p className="font-heading text-white text-lg leading-relaxed italic">
                                         &ldquo;{row.quote}&rdquo;
@@ -356,7 +356,7 @@ function ValuesInPractice() {
                                     </div>
                                     <div>
                                         <div className="font-heading text-white text-sm font-bold">Latravia Clayton, CFP&reg;</div>
-                                        <div className="font-body text-slate-400 text-xs">Founder, L. Clayton Services Inc</div>
+                                        <div className="font-body text-slate-400 text-xs">Founder, L Clayton Services Inc</div>
                                     </div>
                                 </div>
                             </div>
@@ -494,7 +494,7 @@ function ValuesCTA() {
                         <p className="font-heading text-navy text-sm font-bold mb-5">Explore Further</p>
                         <ul className="flex flex-col gap-3">
                             {[
-                                { label: "About L. Clayton Services", href: "/about" },
+                                { label: "About L Clayton Services", href: "/about" },
                                 { label: "Our Philosophy", href: "/about/philosophy" },
                                 { label: "Our Process", href: "/about/process" },
                                 { label: "Services We Offer", href: "/services" },
