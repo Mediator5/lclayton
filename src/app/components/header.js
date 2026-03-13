@@ -303,7 +303,7 @@ export default function Header() {
                         <Link href="/" className="flex items-center gap-3 shrink-0">
                             <Image
                                 className="dark:invert"
-                                src="/L CLAYTON.jpeg"
+                                src="/lclogo.png"
                                 alt="L Clayton Services"
                                 width={80}
                                 height={80}
