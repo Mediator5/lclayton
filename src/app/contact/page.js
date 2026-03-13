@@ -7,19 +7,13 @@ import Link from "next/link";
 
 const OFFICES = [
   {
-    name: "Silver Spring Office",
-    address: ["8403 Colesville Road", "Suite 1100", "Silver Spring, MD 20910"],
-    phone: "301-563-9700",
-    phoneFmt: "+13015639700",
+    name: "Office",
+    address: ["200 South Andrews Ave. Suite 504 Fort Lauderdale,  FL 33301"],
+    phone: "800-334-9809",
+    phoneFmt: "800-334-9809",
     mapUrl: "https://maps.google.com/?q=8403+Colesville+Road+Suite+1100+Silver+Spring+MD+20910",
   },
-  {
-    name: "Virginia Beach Office",
-    address: ["780 Lynnhaven Parkway", "Suite 400", "Virginia Beach, VA 23452"],
-    phone: "757-828-1099",
-    phoneFmt: "+17578281099",
-    mapUrl: "https://maps.google.com/?q=780+Lynnhaven+Parkway+Suite+400+Virginia+Beach+VA+23452",
-  },
+
 ];
 
 const SUBJECTS = [
@@ -33,10 +27,10 @@ const SUBJECTS = [
 ];
 
 const WHY_US = [
-  { label: "No commitment required",   desc: "Your first meeting is simply a conversation." },
-  { label: "100% virtual practice",    desc: "Meet from wherever is most convenient for you." },
-  { label: "Fiduciary standard",       desc: "We always act in your best interest." },
-  { label: "20+ years of experience",  desc: "Deep expertise across all the areas that matter." },
+  { label: "No commitment required", desc: "Your first meeting is simply a conversation." },
+  { label: "100% virtual practice", desc: "Meet from wherever is most convenient for you." },
+  { label: "Fiduciary standard", desc: "We always act in your best interest." },
+  { label: "20+ years of experience", desc: "Deep expertise across all the areas that matter." },
 ];
 
 // ─── Utilities ────────────────────────────────────────────────────────────────
@@ -196,9 +190,9 @@ function ContactMain() {
     firstName: "", lastName: "", email: "",
     phone: "", subject: "", message: "",
   });
-  const [errors, setErrors]   = useState({});
+  const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
-  const [sent, setSent]       = useState(false);
+  const [sent, setSent] = useState(false);
 
   const set = (k, v) => {
     setForm((p) => ({ ...p, [k]: v }));
@@ -207,7 +201,7 @@ function ContactMain() {
 
   const validate = () => {
     const e = {};
-    if (!form.email.trim())   e.email   = "Email is required.";
+    if (!form.email.trim()) e.email = "Email is required.";
     else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = "Please enter a valid email address.";
     if (!form.subject.trim()) e.subject = "Please select a subject.";
     if (!form.message.trim()) e.message = "Message is required.";
@@ -259,7 +253,7 @@ function ContactMain() {
                   within one business day.
                 </p>
                 <button
-                  onClick={() => { setSent(false); setForm({ firstName:"", lastName:"", email:"", phone:"", subject:"", message:"" }); }}
+                  onClick={() => { setSent(false); setForm({ firstName: "", lastName: "", email: "", phone: "", subject: "", message: "" }); }}
                   className="font-body text-gold text-xs underline underline-offset-2 hover:text-gold-light transition-colors">
                   Send another message
                 </button>
@@ -362,16 +356,16 @@ function ContactMain() {
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-gold/30 to-transparent" />
               <div className="relative z-10">
                 <p className="font-body text-gold text-xs uppercase tracking-widest font-bold mb-4">Prefer to call?</p>
-                <p className="font-heading text-white text-sm font-bold mb-4">Jeffrey Settle, CFP&reg;</p>
+                <p className="font-heading text-white text-sm font-bold mb-4">Latravia Clayton, CFP&reg;</p>
                 <a href="tel:+13015639700"
                   className="flex items-center gap-2.5 text-slate-200 hover:text-gold transition-colors duration-200 mb-2">
                   <span className="text-gold"><PhoneIcon /></span>
-                  <span className="font-body text-sm">301-563-9700</span>
+                  <span className="font-body text-sm">800-334-9809</span>
                 </a>
-                <a href="mailto:jeffrey.settle@lpl.com"
+                <a href="mailto:contact@lclaytonservicesinc.com"
                   className="flex items-center gap-2.5 text-slate-200 hover:text-gold transition-colors duration-200">
                   <span className="text-gold"><MailIcon /></span>
-                  <span className="font-body text-sm break-all">jeffrey.settle@lpl.com</span>
+                  <span className="font-body text-sm break-all">contact@lclaytonservicesinc.com</span>
                 </a>
               </div>
             </div>
@@ -402,9 +396,9 @@ function ContactMain() {
               <p className="font-heading text-navy text-xs font-bold uppercase tracking-widest mb-4">Follow Us</p>
               <div className="flex items-center gap-2">
                 {[
-                  { Icon: FacebookIcon,  href: "#", label: "Facebook"  },
-                  { Icon: TwitterIcon,   href: "#", label: "X / Twitter"},
-                  { Icon: LinkedInIcon,  href: "#", label: "LinkedIn"  },
+                  { Icon: FacebookIcon, href: "#", label: "Facebook" },
+                  { Icon: TwitterIcon, href: "#", label: "X / Twitter" },
+                  { Icon: LinkedInIcon, href: "#", label: "LinkedIn" },
                   { Icon: InstagramIcon, href: "#", label: "Instagram" },
                 ].map(({ Icon, href, label }) => (
                   <a key={label} href={href} aria-label={label}
@@ -507,7 +501,7 @@ function LegalDisclosure() {
     <div className="font-body bg-white border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-10">
         <p className="font-body text-slate-400 text-[11px] leading-relaxed max-w-4xl border-l-2 border-slate-200 pl-4">
-          Jeffrey Settle is a Registered Representative with securities and advisory services
+          Latravia Clayton is a Registered Representative with securities and advisory services
           offered through LPL Financial, a Registered Investment Advisor, Member{" "}
           <a href="https://finra.org" target="_blank" rel="noopener noreferrer"
             className="underline underline-offset-2 hover:text-slate-600 transition-colors">FINRA</a>

@@ -443,7 +443,7 @@ function ProcessPillars() {
                                         <span className="font-heading text-gold text-xs font-bold">JS</span>
                                     </div>
                                     <div>
-                                        <div className="font-heading text-white text-sm font-bold">Jeffrey Settle, CFP&reg;</div>
+                                        <div className="font-heading text-white text-sm font-bold">Latravia Clayton, CFP&reg;</div>
                                         <div className="font-body text-slate-400 text-xs">Founder, L. Clayton Services Inc</div>
                                     </div>
                                 </div>

@@ -183,7 +183,7 @@ function PageHero() {
                         </h1>
 
                         <p className={`${fu("delay-300")} font-body text-slate-300 leading-relaxed mb-10 max-w-2xl text-[clamp(1rem,1.5vw,1.15rem)]`}>
-                            At L. Clayton Services Inc, our values are not a list on a wall. They are the standard
+                            At L Clayton Services Inc. our values are not a list on a wall. They are the standard
                             we hold ourselves to in every conversation, every recommendation, and every decision
                             we make on your behalf.
                         </p>
@@ -355,7 +355,7 @@ function ValuesInPractice() {
                                         <span className="font-heading text-gold text-xs font-bold">JS</span>
                                     </div>
                                     <div>
-                                        <div className="font-heading text-white text-sm font-bold">Jeffrey Settle, CFP&reg;</div>
+                                        <div className="font-heading text-white text-sm font-bold">Latravia Clayton, CFP&reg;</div>
                                         <div className="font-body text-slate-400 text-xs">Founder, L. Clayton Services Inc</div>
                                     </div>
                                 </div>

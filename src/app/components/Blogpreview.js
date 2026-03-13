@@ -6,7 +6,7 @@ import Link from "next/link";
 const POSTS = [
     {
         title: "Tax Planning vs. Tax Preparation: They're Not the Same Thing",
-        author: "Jeffrey Settle",
+        author: "Latravia Clayton",
         date: "Feb 9, 2026",
         tags: ["Tax Planning", "Retirement", "Finance"],
         excerpt: "Most people focus on tax preparation — filing what happened last year. Tax planning is about shaping what happens this year and beyond. Here's why the difference matters enormously.",
@@ -15,7 +15,7 @@ const POSTS = [
     },
     {
         title: "5 Financial Crossroads That Could Reshape Your Future",
-        author: "Jeffrey Settle",
+        author: "Latravia Clayton",
         date: "Jan 20, 2026",
         tags: ["Finance", "Retirement", "Family", "Tax Planning", "Risk Management"],
         excerpt: "From career changes to unexpected inheritances, certain financial moments define the trajectory of your wealth. Are you prepared to navigate them wisely?",
@@ -24,7 +24,7 @@ const POSTS = [
     },
     {
         title: "Common Retirement Regrets — And Proactive Moves to Consider",
-        author: "Jeffrey Settle",
+        author: "Latravia Clayton",
         date: "Dec 18, 2025",
         tags: ["Retirement", "Finance", "Savings", "Estate Planning"],
         excerpt: "After working with retirees for years, certain regrets surface again and again. The good news: most are entirely avoidable with the right plan in place today.",

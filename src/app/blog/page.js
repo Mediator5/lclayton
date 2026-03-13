@@ -10,7 +10,7 @@ const POSTS = [
   {
     slug: "tax-planning-vs-tax-preparation",
     title: "Tax Planning vs. Tax Preparation: They're Not the Same Thing",
-    author: "Jeffrey Settle",
+    author: "Latravia Clayton",
     date: "Feb 9, 2026",
     excerpt: "Understand the difference between how tax preparation and tax planning can change how you think about money year-round — not just when it's time to file.",
     tags: ["Tax Planning", "Retirement", "Finance"],
@@ -20,7 +20,7 @@ const POSTS = [
   {
     slug: "5-financial-crossroads",
     title: "5 Financial Crossroads That Could Reshape Your Future",
-    author: "Jeffrey Settle",
+    author: "Latravia Clayton",
     date: "Jan 20, 2026",
     excerpt: "You know how life tends to throw in a few plot twists? Be prepared for the financial decisions that carry the most weight.",
     tags: ["Finance", "Retirement", "Family", "Tax Planning", "Risk Management"],
@@ -30,7 +30,7 @@ const POSTS = [
   {
     slug: "common-retirement-regrets",
     title: "Common Retirement Regrets — And Proactive Moves to Consider",
-    author: "Jeffrey Settle",
+    author: "Latravia Clayton",
     date: "Dec 18, 2025",
     excerpt: "Many people don't regret being retired. They regret how they got there. Here's what to do differently — while you still can.",
     tags: ["Retirement", "Finance", "Savings", "Risk Management", "Insurance", "Estate Planning"],
@@ -39,7 +39,7 @@ const POSTS = [
   {
     slug: "one-economy-two-realities",
     title: "One Economy, Two Realities: Understanding Today's Economic Divide",
-    author: "Jeffrey Settle",
+    author: "Latravia Clayton",
     date: "Dec 4, 2025",
     excerpt: "It's possible for one economy to tell two different stories — one of growth and abundance, another of constraint and scarcity.",
     tags: ["Finance", "Investments", "Savings", "Credit", "Risk Management", "Retirement"],
@@ -48,7 +48,7 @@ const POSTS = [
   {
     slug: "2026-irs-contribution-limits",
     title: "New 2026 IRS Contribution Limits for Retirement Savings Accounts",
-    author: "Jeffrey Settle",
+    author: "Latravia Clayton",
     date: "Nov 14, 2025",
     excerpt: "The IRS has announced higher contribution limits for retirement plans in 2026, giving you the chance to set aside more money in your tax-advantaged accounts.",
     tags: ["Savings", "Retirement", "Investments", "Tax Planning"],
@@ -57,7 +57,7 @@ const POSTS = [
   {
     slug: "tsp-loan-pros-cons",
     title: "Considering a TSP Loan: The Pros, Cons, and What Happens If You Leave Federal Service",
-    author: "Jeffrey Settle",
+    author: "Latravia Clayton",
     date: "Nov 10, 2025",
     excerpt: "If you're a federal employee, you may look at your Thrift Savings Plan and think: that's my money — can't I borrow from it if I need to?",
     tags: ["Investments", "Savings", "Risk Management"],
@@ -66,7 +66,7 @@ const POSTS = [
   {
     slug: "inflation-signals-financial-planning",
     title: "What Recent Inflation Signals Mean for Financial Planning",
-    author: "Jeffrey Settle",
+    author: "Latravia Clayton",
     date: "Nov 3, 2025",
     excerpt: "Inflation has been the boogeyman of the economy for months. The latest report provided useful data for understanding what comes next.",
     tags: ["Finance", "Savings", "Investments", "Retirement", "Tax Planning", "Risk Management"],
@@ -75,7 +75,7 @@ const POSTS = [
   {
     slug: "rethinking-retirement-wealth",
     title: "Rethinking Retirement: Why True Wealth Is More Than Money",
-    author: "Jeffrey Settle",
+    author: "Latravia Clayton",
     date: "Oct 21, 2025",
     excerpt: "You've mapped out your dream retirement. But here's what the spreadsheet doesn't capture.",
     tags: ["Retirement", "Lifestyle", "Health", "Family"],
@@ -84,7 +84,7 @@ const POSTS = [
   {
     slug: "overlooked-retirement-expenses",
     title: "Overlooked Retirement Expenses (And How to Plan for Them)",
-    author: "Jeffrey Settle",
+    author: "Latravia Clayton",
     date: "Oct 2, 2025",
     excerpt: "A comfortable retirement doesn't come with a fixed price tag. Some of the most important costs are the easiest to overlook.",
     tags: ["Retirement", "Finance", "Health", "Tax Planning", "Real Estate"],
@@ -102,7 +102,7 @@ const POSTS = [
   {
     slug: "brain-sabotages-investment-plan",
     title: "Why Your Brain Sabotages Your Investment Plan (No Matter What the Market Does)",
-    author: "Jeffrey Settle",
+    author: "Latravia Clayton",
     date: "Sep 12, 2025",
     excerpt: "The Dow crosses 45,000. Your brain whispers: this has to be the top. The market drops 15%. Your brain screams: get out now.",
     tags: ["Investments", "Finance", "Savings", "Risk Management"],
@@ -128,19 +128,19 @@ const POSTS_PER_PAGE = 9;
 // ─── Tag color map ────────────────────────────────────────────────────────────
 
 const TAG_COLORS = {
-  "Tax Planning":    "bg-purple-50  text-purple-700  border-purple-100",
-  "Retirement":      "bg-amber-50   text-amber-700   border-amber-100",
-  "Finance":         "bg-blue-50    text-blue-700    border-blue-100",
-  "Investments":     "bg-emerald-50 text-emerald-700 border-emerald-100",
-  "Savings":         "bg-teal-50    text-teal-700    border-teal-100",
+  "Tax Planning": "bg-purple-50  text-purple-700  border-purple-100",
+  "Retirement": "bg-amber-50   text-amber-700   border-amber-100",
+  "Finance": "bg-blue-50    text-blue-700    border-blue-100",
+  "Investments": "bg-emerald-50 text-emerald-700 border-emerald-100",
+  "Savings": "bg-teal-50    text-teal-700    border-teal-100",
   "Risk Management": "bg-rose-50    text-rose-700    border-rose-100",
-  "Insurance":       "bg-sky-50     text-sky-700     border-sky-100",
-  "Family":          "bg-pink-50    text-pink-700    border-pink-100",
+  "Insurance": "bg-sky-50     text-sky-700     border-sky-100",
+  "Family": "bg-pink-50    text-pink-700    border-pink-100",
   "Estate Planning": "bg-indigo-50  text-indigo-700  border-indigo-100",
-  "Credit":          "bg-orange-50  text-orange-700  border-orange-100",
-  "Health":          "bg-green-50   text-green-700   border-green-100",
-  "Lifestyle":       "bg-lime-50    text-lime-700    border-lime-100",
-  "Real Estate":     "bg-stone-50   text-stone-700   border-stone-100",
+  "Credit": "bg-orange-50  text-orange-700  border-orange-100",
+  "Health": "bg-green-50   text-green-700   border-green-100",
+  "Lifestyle": "bg-lime-50    text-lime-700    border-lime-100",
+  "Real Estate": "bg-stone-50   text-stone-700   border-stone-100",
 };
 
 function TagPill({ tag, small = false, active = false, onClick }) {
@@ -373,22 +373,20 @@ function BlogHero({ query, setQuery, activeTag, setActiveTag }) {
                 <button
                   onClick={() => setActiveTag(null)}
                   className={`font-body text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border
-                               transition-all duration-200 ${
-                    activeTag === null
+                               transition-all duration-200 ${activeTag === null
                       ? "bg-gold text-navy-deep border-gold font-bold"
                       : "text-slate-400 border-white/20 hover:border-white/40 hover:text-white"
-                  }`}>
+                    }`}>
                   All
                 </button>
                 {ALL_TAGS.map((tag) => (
                   <button key={tag}
                     onClick={() => setActiveTag(activeTag === tag ? null : tag)}
                     className={`font-body text-[10px] uppercase tracking-wider px-3 py-1 rounded-full border
-                                 transition-all duration-200 ${
-                      activeTag === tag
+                                 transition-all duration-200 ${activeTag === tag
                         ? "bg-gold text-navy-deep border-gold font-bold"
                         : "text-slate-400 border-white/20 hover:border-white/40 hover:text-white"
-                    }`}>
+                      }`}>
                     {tag}
                   </button>
                 ))}
@@ -463,11 +461,10 @@ function PostGrid({ posts, page, setPage, total }) {
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
               <button key={p}
                 onClick={() => setPage(p)}
-                className={`w-9 h-9 rounded-xl text-sm font-heading font-bold transition-all duration-200 ${
-                  p === page
+                className={`w-9 h-9 rounded-xl text-sm font-heading font-bold transition-all duration-200 ${p === page
                     ? "bg-navy text-white shadow-sm"
                     : "text-slate-500 hover:text-navy hover:bg-slate-100 border border-slate-200"
-                }`}>
+                  }`}>
                 {p}
               </button>
             ))}
@@ -553,13 +550,13 @@ function NewsletterStrip() {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function BlogPage() {
-  const [query, setQuery]       = useState("");
+  const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState(null);
-  const [page, setPage]         = useState(1);
+  const [page, setPage] = useState(1);
 
   // Filter
   const filtered = POSTS.filter((p) => {
-    const matchTag   = !activeTag || p.tags.includes(activeTag);
+    const matchTag = !activeTag || p.tags.includes(activeTag);
     const matchQuery = !query.trim() ||
       p.title.toLowerCase().includes(query.toLowerCase()) ||
       p.excerpt.toLowerCase().includes(query.toLowerCase()) ||
@@ -570,10 +567,10 @@ export default function BlogPage() {
   // Reset page on filter change
   useEffect(() => { setPage(1); }, [query, activeTag]);
 
-  const isFiltered      = !!query || !!activeTag;
-  const featuredPosts   = !isFiltered ? POSTS.filter((p) => p.featured) : [];
-  const gridPosts       = isFiltered ? filtered : POSTS.filter((p) => !p.featured);
-  const paginatedPosts  = gridPosts.slice((page - 1) * POSTS_PER_PAGE, page * POSTS_PER_PAGE);
+  const isFiltered = !!query || !!activeTag;
+  const featuredPosts = !isFiltered ? POSTS.filter((p) => p.featured) : [];
+  const gridPosts = isFiltered ? filtered : POSTS.filter((p) => !p.featured);
+  const paginatedPosts = gridPosts.slice((page - 1) * POSTS_PER_PAGE, page * POSTS_PER_PAGE);
 
   return (
     <>

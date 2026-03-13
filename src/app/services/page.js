@@ -13,7 +13,7 @@ const SERVICES = [
         tag: "Specialty",
         tagColor: "text-gold bg-gold/10",
         summary: "We untangle the full complexity of your federal benefits package — FERS, TSP, FEGLI, CSRS, FEHB, and more — so you can make the most of every program available to you.",
-        body: "For federal employees, reviewing the various types of employment benefits offered by the federal government can be confusing. At L. Clayton Services Inc, we will work with you to understand which retirement, financial planning, and investment strategies fit your needs. Whether your questions are regarding FERS, FEGLI, TSP, CSRS, or any other acronym, we are well-versed in your options and ready to help.",
+        body: "For federal employees, reviewing the various types of employment benefits offered by the federal government can be confusing. At L Clayton Services Inc. we will work with you to understand which retirement, financial planning, and investment strategies fit your needs. Whether your questions are regarding FERS, FEGLI, TSP, CSRS, or any other acronym, we are well-versed in your options and ready to help.",
         href: "/services/federal-employees",
         icon: (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
@@ -261,7 +261,7 @@ function PageHero() {
                                     <span className="font-body text-slate-400 text-xs uppercase tracking-wider leading-snug">{s.label}</span>
                                 </div>
                             ))}
-                            {/* Jeffrey quote */}
+                            {/* Latravia quote */}
                             <div className="col-span-3 bg-white/5 border border-white/10 rounded-2xl px-6 py-5 flex items-start gap-3">
                                 <div className="w-8 h-8 rounded-full bg-gold/20 border border-gold/30 flex items-center justify-center shrink-0 mt-0.5">
                                     <span className="font-heading text-gold text-[10px] font-bold">JS</span>

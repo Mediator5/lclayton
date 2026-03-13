@@ -265,17 +265,17 @@ export default function Header() {
                                 className="hidden sm:flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors duration-150"
                             >
                                 <PhoneIcon />
-                                <span className="font-medium tracking-wide">+1 (800) 123-4567</span>
+                                <span className="font-medium tracking-wide">800-334-9809</span>
                             </a>
 
                             <span className="hidden sm:block w-px h-4 bg-white/20" />
 
                             <a
-                                href="mailto:info@lclaytonservices.com"
+                                href="mailto:contact@lclaytonservicesinc.com"
                                 className="hidden sm:flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors duration-150"
                             >
                                 <MailIcon />
-                                <span className="font-medium tracking-wide">info@lclaytonservices.com</span>
+                                <span className="font-medium tracking-wide">contact@lclaytonservicesinc.com</span>
                             </a>
 
                             <span className="hidden sm:block w-px h-4 bg-white/20" />
@@ -349,10 +349,10 @@ export default function Header() {
                         {/* Contact strip */}
                         <div className="flex flex-col gap-2 py-3 border-b border-slate-100 mb-2">
                             <a href="tel:+18001234567" className="flex items-center gap-2 text-sm text-slate-500">
-                                <PhoneIcon /> +1 (800) 123-4567
+                                <PhoneIcon /> 800-334-9809
                             </a>
-                            <a href="mailto:info@lclaytonservices.com" className="flex items-center gap-2 text-sm text-slate-500">
-                                <MailIcon /> info@lclaytonservices.com
+                            <a href="mailto:contact@lclaytonservicesinc.com" className="flex items-center gap-2 text-sm text-slate-500">
+                                <MailIcon /> contact@lclaytonservicesinc.com
                             </a>
                         </div>
 

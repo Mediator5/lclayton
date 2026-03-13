@@ -187,7 +187,7 @@ function PageHero() {
 
                             <p className={`${fu("delay-300")} font-body text-slate-300 leading-relaxed mb-6 text-[clamp(1rem,1.4vw,1.1rem)]`}>
                                 For federal employees, reviewing the various types of employment benefits offered by
-                                the federal government can be confusing. At L. Clayton Services Inc, we will work
+                                the federal government can be confusing. At L Clayton Services Inc. we will work
                                 with you to understand which retirement, financial planning, and investment strategies
                                 fit your needs.
                             </p>

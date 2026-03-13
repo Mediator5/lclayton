@@ -29,42 +29,42 @@ const VALUES = [
 ];
 
 const MILESTONES = [
-    { year: "2003", event: "Jeffrey begins his career as a financial advisor, building deep expertise in retirement and wealth planning." },
+    { year: "2003", event: "Latravia begins his career as a financial advisor, building deep expertise in retirement and wealth planning." },
     { year: "2007", event: "Recruited to the Washington D.C. area to lead a team of new financial advisors — sparking a passion for working with clients one-on-one." },
-    { year: "2009", event: "Jeffrey earns the CERTIFIED FINANCIAL PLANNER™ (CFP®) designation, cementing his commitment to professional excellence." },
+    { year: "2009", event: "Latravia earns the CERTIFIED FINANCIAL PLANNER™ (CFP®) designation, cementing his commitment to professional excellence." },
     { year: "2011", event: "L. Clayton Services Inc is founded as an independent, 100% virtual practice built to deliver truly personalized financial guidance." },
     { year: "Today", event: "Serving clients across multiple states with clarity, honesty, and a relentless focus on their long-term financial well-being." },
 ];
 
 const TEAM = [
     {
-        name: "Jeffrey Settle", credentials: "CFP®",
+        name: "Latravia Clayton", credentials: "CFP®",
         role: "Financial Advisor & Founder",
-        phone: "301-563-9700", email: "jeffrey.settle@lpl.com",
-        initials: "JS", tenure: "Advisor since 2003 · Founded L. Clayton Services 2011",
+        phone: "800-334-9809", email: "contact@lclaytonservicesinc.com",
+        initials: "LC", tenure: "Advisor since 2003 · Founded L. Clayton Services 2011",
         bio: [
-            "As Founder and Financial Advisor at L. Clayton Services Inc, Jeffrey brings over 20 years of experience helping individuals and families pursue their financial goals with clarity and confidence. He specializes in retirement planning, tax strategy, and wealth management.",
-            "Jeffrey obtained the CERTIFIED FINANCIAL PLANNER™ (CFP®) designation in 2009. He holds a bachelor's degree in Finance with a minor in Sociology from Virginia Tech, and holds FINRA Series 7, Series 24, and Series 66 licenses through LPL Financial, along with state insurance and annuity licenses.",
-            "After being recruited to the D.C. area in 2007 to lead a team of new advisors, Jeffrey discovered his passion for working with clients one-on-one. In 2011, he became an independent advisor so he could have the freedom and resources to deliver truly personalized advice, tools, and services.",
+            "As Founder and Financial Advisor at L Clayton Services Inc. Latravia brings over 20 years of experience helping individuals and families pursue their financial goals with clarity and confidence. He specializes in retirement planning, tax strategy, and wealth management.",
+            "Latravia obtained the CERTIFIED FINANCIAL PLANNER™ (CFP®) designation in 2009. He holds a bachelor's degree in Finance with a minor in Sociology from Virginia Tech, and holds FINRA Series 7, Series 24, and Series 66 licenses through LPL Financial, along with state insurance and annuity licenses.",
+            "After being recruited to the D.C. area in 2007 to lead a team of new advisors, Latravia discovered his passion for working with clients one-on-one. In 2011, he became an independent advisor so he could have the freedom and resources to deliver truly personalized advice, tools, and services.",
             "What he loves most? Giving someone the green light to retire — or to take that dream trip — because they have saved and invested wisely along the way. Outside of work, he enjoys time with his wife Jill and their two children, and is an avid drummer.",
         ],
         specialties: ["Retirement Planning", "Tax Strategy", "Wealth Management", "Federal Benefits", "Estate Planning"],
         licenses: ["CFP®", "Series 7", "Series 24", "Series 66", "LPL Financial"],
     },
-    {
-        name: "Sheila Davis", credentials: "",
-        role: "Manager of Client Relations",
-        phone: "301-563-9701", email: "sheila.davis@lpl.com",
-        initials: "SD", tenure: "Client Relations Specialist",
-        bio: [
-            "As Manager of Client Relations, Sheila is the heart of the L. Clayton Services client experience. She focuses on delivering a positive, personalized experience through proactive communication and efficient, thoughtful service.",
-            "Sheila holds a bachelor's degree in Media Communications from the University of Pittsburgh. Her career has spanned the National Geographic Channel, the U.S. Department of Health and Human Services, UPMC, and Carnegie Mellon University.",
-            "With a genuine talent for understanding client needs and providing tailored solutions, Sheila ensures that every interaction — from the very first call to your most important financial milestone — feels seamless and fully supported.",
-            "Outside of work, she enjoys time with her husband and kids, bird-watching, and baking.",
-        ],
-        specialties: ["Client Experience", "Onboarding", "Account Services", "Communications"],
-        licenses: [],
-    },
+    // {
+    //     name: "Sheila Davis", credentials: "",
+    //     role: "Manager of Client Relations",
+    //     phone: "301-563-9701", email: "sheila.davis@lpl.com",
+    //     initials: "SD", tenure: "Client Relations Specialist",
+    //     bio: [
+    //         "As Manager of Client Relations, Sheila is the heart of the L. Clayton Services client experience. She focuses on delivering a positive, personalized experience through proactive communication and efficient, thoughtful service.",
+    //         "Sheila holds a bachelor's degree in Media Communications from the University of Pittsburgh. Her career has spanned the National Geographic Channel, the U.S. Department of Health and Human Services, UPMC, and Carnegie Mellon University.",
+    //         "With a genuine talent for understanding client needs and providing tailored solutions, Sheila ensures that every interaction — from the very first call to your most important financial milestone — feels seamless and fully supported.",
+    //         "Outside of work, she enjoys time with her husband and kids, bird-watching, and baking.",
+    //     ],
+    //     specialties: ["Client Experience", "Onboarding", "Account Services", "Communications"],
+    //     licenses: [],
+    // },
 ];
 
 // ─── Shared Utilities ─────────────────────────────────────────────────────────
@@ -195,7 +195,7 @@ function OurCommitment() {
                             <em className="not-italic text-gold">Matters Most to You</em>
                         </h2>
                         <p className="font-body text-slate-500 leading-relaxed mb-4 text-sm">
-                            At L. Clayton Services Inc, we understand that you are entrusting us with significant
+                            At L Clayton Services Inc. we understand that you are entrusting us with significant
                             aspects of your life. We take that responsibility seriously and are dedicated to getting
                             everything right — from the very big to the very small.
                         </p>
@@ -226,7 +226,7 @@ function OurCommitment() {
                                     <span className="font-heading text-gold text-sm font-bold">JS</span>
                                 </div>
                                 <div>
-                                    <div className="font-heading text-white text-sm font-bold">Jeffrey Settle, CFP®</div>
+                                    <div className="font-heading text-white text-sm font-bold">Latravia Clayton, CFP®</div>
                                     <div className="font-body text-slate-400 text-xs">Founder, L. Clayton Services Inc</div>
                                 </div>
                             </footer>
@@ -430,7 +430,7 @@ function MeetTheTeam() {
                     </div>
 
                     <p className={`mt-12 font-body text-slate-400 text-[11px] leading-relaxed max-w-3xl border-l-2 border-slate-200 pl-4 transition-all duration-700 ease-out delay-300 ${inView ? "opacity-100" : "opacity-0"}`}>
-                        Jeffrey Settle is a Registered Representative with securities and advisory services offered through LPL Financial,
+                        Latravia Clayton is a Registered Representative with securities and advisory services offered through LPL Financial,
                         a Registered Investment Advisor, Member FINRA/SIPC. The LPL Financial registered representative(s) associated with
                         this website may discuss and/or transact business only with residents of the states in which they are properly
                         registered or licensed. No offers may be made or accepted from any resident of any other state.{" "}

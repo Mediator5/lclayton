@@ -8,7 +8,7 @@ const CARDS = [
         number: "01",
         title: "About Us",
         href: "/about",
-        body: "At L. Clayton Services Inc, we understand that you're entrusting us with significant aspects of your life. We take that responsibility seriously and are dedicated to getting everything right — from the very big to the very small.",
+        body: "At L Clayton Services Inc. we understand that you're entrusting us with significant aspects of your life. We take that responsibility seriously and are dedicated to getting everything right — from the very big to the very small.",
         cta: "Learn More",
         icon: (
             <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">

@@ -171,7 +171,7 @@ function PageHero() {
                             </h1>
 
                             <p className={`${fu("delay-300")} font-body text-slate-300 leading-relaxed mb-8 text-[clamp(1rem,1.5vw,1.1rem)]`}>
-                                At L. Clayton Services Inc, we specialize in serving a focused range of clients
+                                At L Clayton Services Inc. we specialize in serving a focused range of clients
                                 who share a common goal: securing a financially stable future. Our expertise lies
                                 in federal employees, pre-retirees, and retired individuals — with guidance
                                 tailored precisely to where you are in life.
@@ -240,7 +240,7 @@ function FederalEmployees() {
                         </h2>
                         <p className="font-body text-slate-500 text-sm leading-relaxed mb-5">
                             Understanding the various employment benefits offered by the federal government can be
-                            challenging. At L. Clayton Services Inc, our goal is to simplify this process for you.
+                            challenging. At L Clayton Services Inc. our goal is to simplify this process for you.
                             We will work closely with you to determine the most suitable retirement, financial
                             planning, and investment strategies tailored to your specific federal situation.
                         </p>
@@ -368,7 +368,7 @@ function PreRetirees() {
                                 expenses and the lifestyle you have envisioned.
                             </p>
                             <p className="font-body text-slate-400 text-sm leading-relaxed mb-7">
-                                At L. Clayton Services Inc, our team assists you in navigating the strategies
+                                At L Clayton Services Inc. our team assists you in navigating the strategies
                                 available for a comfortable retirement. We help you establish a retirement budget,
                                 address major expenses or debts, adjust your spending and investment approach,
                                 and provide guidance on minimizing your taxes upon retirement.

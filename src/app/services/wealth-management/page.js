@@ -565,7 +565,7 @@ function AllocationStrategy() {
                         ))}
                     </div>
 
-                    {/* Jeffrey quote */}
+                    {/* Latravia quote */}
                     <div className={`max-w-2xl mx-auto bg-white/5 border border-white/10 rounded-2xl p-7 text-center
                             transition-all duration-700 ease-out delay-300 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
                         <p className="font-heading text-white text-base leading-relaxed italic mb-4">
@@ -576,7 +576,7 @@ function AllocationStrategy() {
                                 <span className="font-heading text-gold text-[10px] font-bold">JS</span>
                             </div>
                             <div className="text-left">
-                                <div className="font-heading text-white text-xs font-bold">Jeffrey Settle, CFP&reg;</div>
+                                <div className="font-heading text-white text-xs font-bold">Latravia Clayton, CFP&reg;</div>
                                 <div className="font-body text-slate-400 text-[10px]">Founder, L. Clayton Services Inc</div>
                             </div>
                         </div>

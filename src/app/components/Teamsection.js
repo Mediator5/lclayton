@@ -4,12 +4,12 @@ import { useEffect, useRef, useState } from "react";
 
 const TEAM = [
     {
-        name: "Jeffrey Settle",
+        name: "Latravia Clayton",
         credentials: "CFP®",
         role: "Financial Advisor",
-        phone: "301-563-9700",
-        email: "jeffrey.settle@lpl.com",
-        bio: "Jeffrey is a Certified Financial Planner and Registered Representative with LPL Financial. He specializes in retirement planning, tax strategy, and helping federal employees navigate their benefits — bringing clarity and confidence to every client relationship.",
+        phone: "800-334-9809",
+        email: "contact@lclaytonservicesinc.com",
+        bio: "Latravia is a Certified Financial Planner and Registered Representative with LPL Financial. He specializes in retirement planning, tax strategy, and helping federal employees navigate their benefits — bringing clarity and confidence to every client relationship.",
         initials: "JS",
         specialties: ["Retirement Planning", "Tax Strategy", "Federal Benefits", "Estate Planning"],
     },
@@ -183,7 +183,7 @@ export default function TeamSection() {
                     <p className={`mt-12 font-body text-slate-400 text-xs leading-relaxed max-w-2xl
                           transition-all duration-700 ease-out delay-300 ${inView ? "opacity-100" : "opacity-0"
                         }`}>
-                        Jeffrey Settle is a Registered Representative with securities and advisory services
+                        Latravia Clayton is a Registered Representative with securities and advisory services
                         offered through LPL Financial, a Registered Investment Advisor, Member FINRA/SIPC.
                         The LPL Financial registered representative(s) associated with this website may discuss
                         and/or transact business only with residents of the states in which they are properly

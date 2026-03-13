@@ -4,16 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 
 const OFFICES = [
+
     {
-        name: "Silver Spring Office",
-        address: ["8403 Colesville Road", "Suite 1100", "Silver Spring, MD 20910"],
-        phone: "301-563-9700",
+        name: "Office",
+        address: ["200 South Andrews Ave. Suite 504 Fort Lauderdale,  FL 33301"],
+        phone: "800-334-9809",
+        phoneFmt: "800-334-9809",
+        mapUrl: "https://maps.google.com/?q=8403+Colesville+Road+Suite+1100+Silver+Spring+MD+20910",
     },
-    {
-        name: "Virginia Beach Office",
-        address: ["780 Lynnhaven Parkway", "Suite 400", "Virginia Beach, VA 23452"],
-        phone: "757-828-1099",
-    },
+
 ];
 
 const QUICK_LINKS = [
@@ -277,7 +276,7 @@ export default function Footer() {
 
                         {/* Legal disclosure */}
                         <p className="font-body text-slate-500 text-[11px] leading-relaxed mb-5 max-w-4xl">
-                            Jeffrey Settle is a Registered Representative with securities and advisory services offered through
+                            Latravia Clayton is a Registered Representative with securities and advisory services offered through
                             LPL Financial, a Registered Investment Advisor, Member{" "}
                             <a href="https://finra.org" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 underline underline-offset-2 transition-colors">FINRA</a>
                             /
@@ -292,7 +291,7 @@ export default function Footer() {
 
                             {/* Copyright */}
                             <p className="font-body text-slate-500 text-xs">
-                                © {new Date().getFullYear()} L. Clayton Services Inc. All rights reserved.
+                                © {new Date().getFullYear()} L Clayton Services Inc. All rights reserved.
                             </p>
 
                             {/* Social icons */}
