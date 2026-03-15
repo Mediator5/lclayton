@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -52,6 +51,20 @@ const TEAM = [
         specialties: ["Retirement Planning", "Tax Strategy", "Wealth Management", "Federal Benefits", "Estate Planning"],
         licenses: ["CFP®", "Series 7", "Series 24", "Series 66", "LPL Financial"],
     },
+    // {
+    //     name: "Sheila Davis", credentials: "",
+    //     role: "Manager of Client Relations",
+    //     phone: "301-563-9701", email: "sheila.davis@lpl.com",
+    //     initials: "SD", tenure: "Client Relations Specialist",
+    //     bio: [
+    //         "As Manager of Client Relations, Sheila is the heart of the L Clayton Services client experience. She focuses on delivering a positive, personalized experience through proactive communication and efficient, thoughtful service.",
+    //         "Sheila holds a bachelor's degree in Media Communications from the University of Pittsburgh. Her career has spanned the National Geographic Channel, the U.S. Department of Health and Human Services, UPMC, and Carnegie Mellon University.",
+    //         "With a genuine talent for understanding client needs and providing tailored solutions, Sheila ensures that every interaction — from the very first call to your most important financial milestone — feels seamless and fully supported.",
+    //         "Outside of work, she enjoys time with her husband and kids, bird-watching, and baking.",
+    //     ],
+    //     specialties: ["Client Experience", "Onboarding", "Account Services", "Communications"],
+    //     licenses: [],
+    // },
 ];
 
 // ─── Shared Utilities ─────────────────────────────────────────────────────────
@@ -88,40 +101,6 @@ const ArrowRight = () => (
         <path d="M5 12h14M12 5l7 7-7 7" />
     </svg>
 );
-
-// ─── Image Placeholder helpers ────────────────────────────────────────────────
-
-// Replace src with your real image path, e.g. src="/about/office.jpg"
-// aspect="landscape" → 16:9  |  aspect="portrait" → 3:4
-function ImagePlaceholder({ src='', alt, aspect = "landscape", className = "" }) {
-    const paddingMap = { landscape: "56.25%", portrait: "133.33%" };
-    const label     = aspect === "landscape" ? "Landscape Photo  (16 : 9)" : "Portrait Photo  (3 : 4)";
-
-    if (src) {
-        return (
-            <div className={`relative w-full overflow-hidden rounded-2xl ${className}`}
-                 style={{ paddingTop: paddingMap[aspect] }}>
-                <Image src={src} alt={alt} fill className="object-cover" />
-            </div>
-        );
-    }
-
-    // Placeholder tile
-    return (
-        <div className={`relative w-full rounded-2xl overflow-hidden bg-slate-100 border-2 border-dashed border-slate-300 ${className}`}
-             style={{ paddingTop: paddingMap[aspect] }}>
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-4">
-                <svg className="w-10 h-10 text-slate-300" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0z" />
-                </svg>
-                <span className="font-body text-slate-400 text-xs text-center font-medium">{label}</span>
-                <span className="font-body text-slate-300 text-[10px] text-center">
-                    Replace <code className="bg-slate-200 px-1 rounded">src</code> prop to use your image
-                </span>
-            </div>
-        </div>
-    );
-}
 
 // ─── Section 1: Page Hero ─────────────────────────────────────────────────────
 
@@ -197,8 +176,6 @@ function PageHero() {
 }
 
 // ─── Section 2: Our Commitment ────────────────────────────────────────────────
-// LANDSCAPE IMAGE: sits on the right side of the commitment copy, above the quote card.
-// Replace src="" with your image path when ready, e.g. src="/about/office-landscape.jpg"
 
 function OurCommitment() {
     const [ref, inView] = useInView(0.08);
@@ -207,11 +184,8 @@ function OurCommitment() {
         <section ref={ref} className="font-body bg-white py-24 lg:py-32 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
 
-                {/* ── Top row: copy LEFT + landscape image RIGHT ─────────── */}
-                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-14 items-start mb-14 transition-all duration-700 ease-out ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-
-                    {/* Left: text */}
-                    <div className="flex flex-col justify-center">
+                <div className={`grid grid-cols-1 lg:grid-cols-2 gap-14 items-center mb-20 transition-all duration-700 ease-out ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+                    <div>
                         <div className="inline-flex items-center gap-3 mb-5">
                             <span className="w-8 h-px bg-gold" />
                             <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold">Our Commitment</span>
@@ -232,46 +206,35 @@ function OurCommitment() {
                         </p>
                         <Link href="/services"
                             className="inline-flex items-center gap-2 font-heading text-navy text-sm font-bold
-                                       border-b-2 border-gold pb-0.5 hover:text-gold transition-colors duration-200 self-start">
+                         border-b-2 border-gold pb-0.5 hover:text-gold transition-colors duration-200">
                             Explore Our Services <ArrowRight />
                         </Link>
                     </div>
 
-                    {/* Right: LANDSCAPE image placeholder */}
-                    {/* ↓ To use your image: add  src="/about/your-landscape-photo.jpg"  to ImagePlaceholder */}
-                    <div className={`flex flex-col gap-5 transition-all duration-700 ease-out delay-150 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-                        <ImagePlaceholder
-                            src="/image1.jpg"
-                            alt="L Clayton Services office or team"
-                            aspect="landscape"
-                            className="shadow-lg"
-                        />
-                        {/* Quote card sits directly below the landscape image */}
-                        <div className="bg-navy rounded-2xl p-7 relative overflow-hidden">
-                            <div className="absolute -top-3 -left-1 select-none pointer-events-none"
-                                style={{ fontFamily: "var(--font-heading)", fontSize: "6rem", lineHeight: 1, color: "rgba(201,168,76,0.12)" }}>
-                                &ldquo;
-                            </div>
-                            <blockquote className="relative z-10">
-                                <p className="font-heading text-white text-base leading-relaxed italic mb-4">
-                                    "True wealth is not just about numbers on a page — it is about ease, comfort,
-                                    and the freedom to live life entirely on your own terms."
-                                </p>
-                                <footer className="flex items-center gap-3">
-                                    <div className="w-9 h-9 rounded-full bg-gold/20 border border-gold/30 flex items-center justify-center shrink-0">
-                                        <span className="font-heading text-gold text-sm font-bold">LC</span>
-                                    </div>
-                                    <div>
-                                        <div className="font-heading text-white text-sm font-bold">Latravia Clayton, CFP®</div>
-                                        <div className="font-body text-slate-400 text-xs">Founder, L Clayton Services Inc.</div>
-                                    </div>
-                                </footer>
-                            </blockquote>
+                    <div className="bg-navy rounded-3xl p-10 relative overflow-hidden">
+                        <div className="absolute -top-4 -left-2 select-none pointer-events-none"
+                            style={{ fontFamily: "var(--font-heading)", fontSize: "8rem", lineHeight: 1, color: "rgba(201,168,76,0.10)" }}>
+                            &ldquo;
                         </div>
+                        <blockquote className="relative z-10">
+                            <p className="font-heading text-white text-xl leading-relaxed italic mb-6">
+                                "True wealth is not just about numbers on a page — it is about ease, comfort,
+                                and the freedom to live life entirely on your own terms."
+                            </p>
+                            <footer className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-full bg-gold/20 border border-gold/30 flex items-center justify-center shrink-0">
+                                    <span className="font-heading text-gold text-sm font-bold">JS</span>
+                                </div>
+                                <div>
+                                    <div className="font-heading text-white text-sm font-bold">Latravia Clayton, CFP®</div>
+                                    <div className="font-body text-slate-400 text-xs">Founder, L Clayton Services In.c</div>
+                                </div>
+                            </footer>
+                        </blockquote>
+                        <div className="absolute bottom-0 left-8 right-8 h-0.5 bg-gradient-to-r from-gold/40 to-transparent" />
                     </div>
                 </div>
 
-                {/* ── Values grid ─────────────────────────────────────────── */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                     {VALUES.map((v, i) => (
                         <div key={v.title}
@@ -363,8 +326,6 @@ function OurTimeline() {
 }
 
 // ─── Section 4: Meet the Team ─────────────────────────────────────────────────
-// PORTRAIT IMAGE: sits beside the advisor card as a natural headshot column.
-// Replace src="" with your image path when ready, e.g. src="/about/latravia-portrait.jpg"
 
 function MeetTheTeam() {
     const [ref, inView] = useInView(0.05);
@@ -403,27 +364,13 @@ function MeetTheTeam() {
                                 className={`tc-about bg-white rounded-3xl border border-slate-100 overflow-hidden transition-all duration-700 ease-out ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
                                 style={{ transitionDelay: inView ? `${i * 150}ms` : "0ms" }}>
                                 <div className="h-1 bg-gradient-to-r from-gold via-gold-light to-transparent" />
-
                                 <div className="p-8 lg:p-12">
-                                    {/* ── 3-column grid: portrait | identity | bio ── */}
-                                    <div className="grid grid-cols-1 lg:grid-cols-[auto_220px_1fr] gap-8 lg:gap-10 items-start">
+                                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-                                        {/* Col A: PORTRAIT image placeholder (mobile: full width top) */}
-                                        {/* ↓ To use your image: add  src="/about/latravia-portrait.jpg"  to ImagePlaceholder */}
-                                        <div className="w-full lg:w-48 shrink-0">
-                                            <ImagePlaceholder
-                                                src="/image2.png" 
-                                                alt="Latravia Clayton, CFP®"
-                                                aspect="portrait"
-                                                className="shadow-md"
-                                            />
-                                        </div>
-
-                                        {/* Col B: identity card (name, role, contact, licenses) */}
                                         <div className="flex flex-col items-start gap-5">
-                                            <div className="av-conic w-20 h-20 rounded-full p-[3px] shrink-0">
+                                            <div className="av-conic w-24 h-24 rounded-full p-[3px] shrink-0">
                                                 <div className="w-full h-full rounded-full bg-navy flex items-center justify-center">
-                                                    <span className="font-heading text-gold text-xl font-bold">{member.initials}</span>
+                                                    <span className="font-heading text-gold text-2xl font-bold">{member.initials}</span>
                                                 </div>
                                             </div>
                                             <div>
@@ -451,8 +398,7 @@ function MeetTheTeam() {
                                             )}
                                         </div>
 
-                                        {/* Col C: bio + specialties */}
-                                        <div>
+                                        <div className="lg:col-span-2">
                                             <div className="space-y-4 mb-5">
                                                 {(expanded[member.name] ? member.bio : member.bio.slice(0, 2)).map((p, j) => (
                                                     <p key={j} className="font-body text-slate-500 text-sm leading-relaxed">{p}</p>
