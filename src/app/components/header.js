@@ -281,7 +281,7 @@ export default function Header() {
                             <span className="hidden sm:block w-px h-4 bg-white/20" />
 
                             <a
-                                href="#"
+                                href="/sign-in"
                                 className="flex items-center gap-1.5 bg-gold hover:bg-gold-muted
                                            text-navy-deep font-semibold text-xs uppercase tracking-widest
                                            px-4 py-1.5 rounded-full transition-all duration-200 hover:shadow-md"
