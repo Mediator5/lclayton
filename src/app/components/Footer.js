@@ -276,15 +276,13 @@ export default function Footer() {
 
                         {/* Legal disclosure */}
                         <p className="font-body text-slate-500 text-[11px] leading-relaxed mb-5 max-w-4xl">
-                            Latravia Clayton is a Registered Representative with securities and advisory services offered through
-                            LPL Financial, a Registered Investment Advisor, Member{" "}
-                            <a href="https://finra.org" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 underline underline-offset-2 transition-colors">FINRA</a>
-                            /
-                            <a href="https://sipc.org" target="_blank" rel="noopener noreferrer" className="hover:text-slate-300 underline underline-offset-2 transition-colors">SIPC</a>.
-                            {" "}The LPL Financial registered representative(s) associated with this website may discuss and/or
-                            transact business only with residents of the states in which they are properly registered or licensed.
-                            No offers may be made or accepted from any resident of any other state.{" "}
-                            <a href="#" className="hover:text-slate-300 underline underline-offset-2 transition-colors">LPL Financial Form CRS</a>
+                            L Clayton Services Inc. was established to transform reactive financial habits into proactive
+                            growth strategies. We bring order to complexity and clarity to ambition, moving beyond
+                            traditional consulting to act as the architect of your firm’s future.
+                            Our integrated suite of solutions—spanning Tax Advisory, Trust Services, Bookkeeping, and
+                            Life Insurance—is meticulously designed to build, manage, and protect your business portfolio
+                            from the ground up. At L Clayton Services, we don’t just organize your systems; we empower
+                            your vision with the structure required to thrive.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">

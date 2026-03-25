@@ -32,25 +32,25 @@ const VALUES = [
 const MILESTONES = [
     { year: "2003", event: "Latravia begins his career as a financial advisor, building deep expertise in retirement and wealth planning." },
     { year: "2007", event: "Recruited to the Washington D.C. area to lead a team of new financial advisors — sparking a passion for working with clients one-on-one." },
-    { year: "2009", event: "Latravia earns the CERTIFIED FINANCIAL PLANNER™ (CFP®) designation, cementing his commitment to professional excellence." },
+    { year: "2009", event: "Latravia earns the CERTIFIED FINANCIAL PLANNER™  designation, cementing his commitment to professional excellence." },
     { year: "2015", event: "L Clayton Services Inc is founded as an independent, 100% virtual practice built to deliver truly personalized financial guidance." },
     { year: "Today", event: "Serving clients across multiple states with clarity, honesty, and a relentless focus on their long-term financial well-being." },
 ];
 
 const TEAM = [
     {
-        name: "Latravia Clayton", credentials: "CFP®",
+        name: "Latravia Clayton", credentials: "",
         role: "Financial Advisor & Founder",
         phone: "800-334-9809", email: "contact@lclaytonservicesinc.com",
         initials: "LC", tenure: "Advisor since 2003 · Founded L Clayton Services 2015",
         bio: [
             "As Founder and Financial Advisor at L Clayton Services Inc. Latravia brings over 20 years of experience helping individuals and families pursue their financial goals with clarity and confidence. He specializes in retirement planning, tax strategy, and wealth management.",
-            "Latravia obtained the CERTIFIED FINANCIAL PLANNER™ (CFP®) designation in 2009. He holds a bachelor's degree in Finance with a minor in Sociology from Virginia Tech, and holds FINRA Series 7, Series 24, and Series 66 licenses through LPL Financial, along with state insurance and annuity licenses.",
+            "Latravia obtained the CERTIFIED FINANCIAL PLANNER™  designation in 2009. He holds a bachelor's degree in Finance with a minor in Sociology from Virginia Tech, and holds FINRA Series 7, Series 24, and Series 66 licenses through LPL Financial, along with state insurance and annuity licenses.",
             "After being recruited to the D.C. area in 2007 to lead a team of new advisors, Latravia discovered his passion for working with clients one-on-one. In 2015, he became an independent advisor so he could have the freedom and resources to deliver truly personalized advice, tools, and services.",
             "What he loves most? Giving someone the green light to retire — or to take that dream trip — because they have saved and invested wisely along the way. Outside of work, he enjoys time with his wife Jill and their two children, and is an avid drummer.",
         ],
         specialties: ["Retirement Planning", "Tax Strategy", "Wealth Management", "Federal Benefits", "Estate Planning"],
-        licenses: ["CFP®", "Series 7", "Series 24", "Series 66", "LPL Financial"],
+        licenses: ["", "Series 7", "Series 24", "Series 66", "LPL Financial"],
     },
 ];
 
@@ -262,7 +262,7 @@ function OurCommitment() {
                                         <span className="font-heading text-gold text-sm font-bold">LC</span>
                                     </div>
                                     <div>
-                                        <div className="font-heading text-white text-sm font-bold">Latravia Clayton, CFP®</div>
+                                        <div className="font-heading text-white text-sm font-bold">Latravia Clayton,</div>
                                         <div className="font-body text-slate-400 text-xs">Founder, L Clayton Services Inc.</div>
                                     </div>
                                 </footer>
@@ -413,7 +413,7 @@ function MeetTheTeam() {
                                         <div className="w-full lg:w-48 shrink-0">
                                             <ImagePlaceholder
                                                 src="/image2.png" 
-                                                alt="Latravia Clayton, CFP®"
+                                                alt="Latravia Clayton"
                                                 aspect="portrait"
                                                 className="shadow-md"
                                             />
