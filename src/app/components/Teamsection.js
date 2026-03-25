@@ -5,12 +5,12 @@ import { useEffect, useRef, useState } from "react";
 const TEAM = [
     {
         name: "Latravia Clayton",
-        credentials: "CFP®",
+        credentials: "",
         role: "Financial Advisor",
         phone: "800-334-9809",
         email: "contact@lclaytonservicesinc.com",
         bio: "Latravia is a Certified Financial Planner and Registered Representative with LPL Financial. He specializes in retirement planning, tax strategy, and helping federal employees navigate their benefits — bringing clarity and confidence to every client relationship.",
-        initials: "JS",
+        initials: "LC",
         specialties: ["Retirement Planning", "Tax Strategy", "Federal Benefits", "Estate Planning"],
     },
     // {
