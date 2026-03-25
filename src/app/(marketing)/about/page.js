@@ -93,14 +93,14 @@ const ArrowRight = () => (
 
 // Replace src with your real image path, e.g. src="/about/office.jpg"
 // aspect="landscape" → 16:9  |  aspect="portrait" → 3:4
-function ImagePlaceholder({ src='', alt, aspect = "landscape", className = "" }) {
+function ImagePlaceholder({ src = '', alt, aspect = "landscape", className = "" }) {
     const paddingMap = { landscape: "56.25%", portrait: "133.33%" };
-    const label     = aspect === "landscape" ? "Landscape Photo  (16 : 9)" : "Portrait Photo  (3 : 4)";
+    const label = aspect === "landscape" ? "Landscape Photo  (16 : 9)" : "Portrait Photo  (3 : 4)";
 
     if (src) {
         return (
             <div className={`relative w-full overflow-hidden rounded-2xl ${className}`}
-                 style={{ paddingTop: paddingMap[aspect] }}>
+                style={{ paddingTop: paddingMap[aspect] }}>
                 <Image src={src} alt={alt} fill className="object-cover" />
             </div>
         );
@@ -109,7 +109,7 @@ function ImagePlaceholder({ src='', alt, aspect = "landscape", className = "" })
     // Placeholder tile
     return (
         <div className={`relative w-full rounded-2xl overflow-hidden bg-slate-100 border-2 border-dashed border-slate-300 ${className}`}
-             style={{ paddingTop: paddingMap[aspect] }}>
+            style={{ paddingTop: paddingMap[aspect] }}>
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-4">
                 <svg className="w-10 h-10 text-slate-300" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0z" />
@@ -221,14 +221,27 @@ function OurCommitment() {
                             <em className="not-italic text-gold">Matters Most to You</em>
                         </h2>
                         <p className="font-body text-slate-500 leading-relaxed mb-4 text-sm">
-                            At L Clayton Services Inc. we understand that you are entrusting us with significant
-                            aspects of your life. We take that responsibility seriously and are dedicated to getting
-                            everything right — from the very big to the very small.
+                            L Clayton Services Inc. was established to transform reactive financial habits into proactive
+                            growth strategies. We bring order to complexity and clarity to ambition, moving beyond
+                            traditional consulting to act as the architect of your firm’s future.
                         </p>
                         <p className="font-body text-slate-500 leading-relaxed mb-7 text-sm">
-                            Our team strives to let nothing slip through the cracks. When we commit to something,
-                            consider it done. That is not just a philosophy — it is a standard we hold ourselves to
-                            every single day, for every single client.
+                            Our integrated suite of solutions—spanning Tax Advisory, Trust Services, Bookkeeping, and
+                            Life Insurance—is meticulously designed to build, manage, and protect your business portfolio
+                            from the ground up. At L Clayton Services, we don’t just organize your systems; we empower
+                            your vision with the structure required to thrive.
+                        </p>
+
+                        <p className="font-body text-slate-500 leading-relaxed mb-7 text-sm">
+                            We believe wealth must be:
+                            <ul>
+                                <li>• Intentionally structured</li>
+                                <li>• Carefully documented</li>
+                                <li>• Strategically positioned</li>
+                                <li>• Continuously maintained</li>
+                            </ul>
+                            Our approach blends advisory insight with disciplined financial management to create
+                            sustainable outcomes.
                         </p>
                         <Link href="/services"
                             className="inline-flex items-center gap-2 font-heading text-navy text-sm font-bold
@@ -412,7 +425,7 @@ function MeetTheTeam() {
                                         {/* ↓ To use your image: add  src="/about/latravia-portrait.jpg"  to ImagePlaceholder */}
                                         <div className="w-full lg:w-48 shrink-0">
                                             <ImagePlaceholder
-                                                src="/image2.png" 
+                                                src="/image2.png"
                                                 alt="Latravia Clayton"
                                                 aspect="portrait"
                                                 className="shadow-md"
