@@ -221,9 +221,7 @@ function OurCommitment() {
                             <em className="not-italic text-gold">Matters Most to You</em>
                         </h2>
                         <p className="font-body text-slate-500 leading-relaxed mb-4 text-sm">
-                            L Clayton Services Inc. was established to transform reactive financial habits into proactive
-                            growth strategies. We bring order to complexity and clarity to ambition, moving beyond
-                            traditional consulting to act as the architect of your firm’s future.
+                            The L Clayton Philosophy At L Clayton Services Inc, we move beyond reactive financial management. Located in downtown Fort Lauderdale and serving clients globally, we work with individuals, families, and business owners who demand more than just bookkeeping. We believe your tax position, insurance coverage, and financial records must work together as a single, cohesive strategy.
                         </p>
                         <p className="font-body text-slate-500 leading-relaxed mb-7 text-sm">
                             Our integrated suite of solutions—spanning Tax Advisory, Trust Services, Bookkeeping, and
@@ -233,16 +231,22 @@ function OurCommitment() {
                         </p>
 
                         <p className="font-body text-slate-500 leading-relaxed mb-7 text-sm">
-                            We believe wealth must be:
-                            <ul>
-                                <li>• Intentionally structured</li>
-                                <li>• Carefully documented</li>
-                                <li>• Strategically positioned</li>
-                                <li>• Continuously maintained</li>
-                            </ul>
-                            Our approach blends advisory insight with disciplined financial management to create
-                            sustainable outcomes.
+                            Our Core Pillars
+
                         </p>
+                        <p className="font-body text-slate-500 leading-relaxed mb-3 text-sm">
+                            Tax Advisory &amp; Planning: Proactive strategies to optimize your position and ensure total compliance.
+                        </p>
+                        <p className="font-body text-slate-500 leading-relaxed mb-3 text-sm">
+                            Trust &amp; Fiduciary Services: Dedicated oversight and
+                            support for trustees and families protecting their legacy.
+                        </p>
+                        <p className="font-body text-slate-500 leading-relaxed mb-3 text-sm">
+                            Business Consulting &amp; Bookkeeping: Disciplined record-
+                            keeping and strategic guidance for scalable operations.</p>
+                        <p className="font-body text-slate-500 leading-relaxed mb-3 text-sm">
+                            Life Insurance Solutions: Licensed planning including Term,
+                            Whole Life, and Indexed Universal Life (IUL) policies.</p>
                         <Link href="/services"
                             className="inline-flex items-center gap-2 font-heading text-navy text-sm font-bold
                                        border-b-2 border-gold pb-0.5 hover:text-gold transition-colors duration-200 self-start">
@@ -300,7 +304,7 @@ function OurCommitment() {
                 </div>
 
             </div>
-        </section>
+        </section >
     );
 }
 
