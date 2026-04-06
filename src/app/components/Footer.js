@@ -7,7 +7,7 @@ const OFFICES = [
 
     {
         name: "Office",
-        address: ["200 South Andrews Ave. Suite 504 Fort Lauderdale,  FL 33301"],
+        address: ["200 S Andrews Ave Ste 504Fort Lauderdale, FL 33301"],
         phone: "800-334-9809",
         phoneFmt: "800-334-9809",
         mapUrl: "https://maps.google.com/?q=8403+Colesville+Road+Suite+1100+Silver+Spring+MD+20910",

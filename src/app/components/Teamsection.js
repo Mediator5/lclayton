@@ -83,17 +83,16 @@ export default function TeamSection() {
                         }`}>
                         <div className="inline-flex items-center gap-3 mb-4">
                             <span className="w-8 h-px bg-gold" />
-                            <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold">
+                            <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold hidden">
                                 Our Team
                             </span>
                         </div>
                         <h2 className="font-heading text-navy text-[clamp(2rem,4vw,3rem)] leading-tight mb-3">
-                            The People Behind<br />
-                            <em className="not-italic text-gold">Your Financial Plan</em>
+                            THE ADMINISTRATIVE GOVERNANCE
+
                         </h2>
                         <p className="font-body text-slate-500 text-sm leading-relaxed">
-                            A small, dedicated team that knows your name, understands your goals,
-                            and is committed to your success at every stage of life.
+                            <b>L Clayton Services Inc.</b> is a specialized administrative collective focused on the <b>Governance of Generational Wealth.</b> Our infrastructure is built on the technical intersection of <b>Fiduciary Planning, Federal ERO Transmittal, and Notarial Authentication</b>—ensuring every mandate is executed with absolute precision and legal finality.
                         </p>
                     </div>
 

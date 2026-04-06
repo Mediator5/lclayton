@@ -402,15 +402,14 @@ function MeetTheTeam() {
                     <div className={`max-w-xl mb-16 transition-all duration-700 ease-out ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
                         <div className="inline-flex items-center gap-3 mb-4">
                             <span className="w-8 h-px bg-gold" />
-                            <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold">Meet the Team</span>
+                            <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold hidden">Meet the Team</span>
                         </div>
                         <h2 className="font-heading text-navy text-[clamp(2rem,4vw,3rem)] leading-tight mb-3">
-                            The People Behind<br />
-                            <em className="not-italic text-gold">Your Financial Plan</em>
+                            THE ADMINISTRATIVE GOVERNANCE
+
                         </h2>
                         <p className="font-body text-slate-500 text-sm leading-relaxed">
-                            A small, dedicated team built on expertise, integrity, and genuine care.
-                            We know your name, your goals, and we are with you every step of the way.
+                            <b>L Clayton Services Inc.</b> is a specialized administrative collective focused on the <b>Governance of Generational Wealth.</b> Our infrastructure is built on the technical intersection of <b>Fiduciary Planning, Federal ERO Transmittal, and Notarial Authentication</b>—ensuring every mandate is executed with absolute precision and legal finality.
                         </p>
                     </div>
 
@@ -501,11 +500,7 @@ function MeetTheTeam() {
                     </div>
 
                     <p className={`mt-12 font-body text-slate-400 text-[11px] leading-relaxed max-w-3xl border-l-2 border-slate-200 pl-4 transition-all duration-700 ease-out delay-300 ${inView ? "opacity-100" : "opacity-0"}`}>
-                        Latravia Clayton is a Registered Representative with securities and advisory services offered through LPL Financial,
-                        a Registered Investment Advisor, Member FINRA/SIPC. The LPL Financial registered representative(s) associated with
-                        this website may discuss and/or transact business only with residents of the states in which they are properly
-                        registered or licensed. No offers may be made or accepted from any resident of any other state.{" "}
-                        <a href="#" className="underline underline-offset-2 hover:text-slate-600 transition-colors">LPL Financial Form CRS</a>
+                        L Clayton Services Inc. is a private fiduciary firm specializing in Generational Wealth Transition and Structural Wealth Oversight. As a Certified Financial Planner, Authorized ERO, and Commissioned Notary, the Administrator provides integrated tax advisory, trust architecture, and contractual authentication. All services are governed by the Firm’s independent fiduciary standards and restricted to authorized jurisdictional boundaries.
                     </p>
 
                 </div>
