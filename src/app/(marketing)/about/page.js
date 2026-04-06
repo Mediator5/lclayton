@@ -523,24 +523,22 @@ function AboutCTA() {
                     <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
                     <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
                         <div className="max-w-2xl">
-                            <p className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold mb-3">Ready to Get Started?</p>
+                            <p className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold mb-3">THE REBIRTH: INITIATE THE MANDATE</p>
                             <h2 className="font-heading text-white text-[clamp(1.6rem,3vw,2.4rem)] leading-tight mb-3">
-                                Let&apos;s Build Your Financial Plan —{" "}
-                                <em className="not-italic text-gold">Together</em>
+                               INITIATE THE SUCCESSION MANDATE
                             </h2>
                             <p className="font-body text-slate-300 text-sm leading-relaxed">
-                                We are here to help you work toward your financial goals with confidence.
-                                Contact us today to learn how L Clayton Services Inc can serve you.
+                                Secure the structural integrity of your private estate. Contact L Clayton Services Inc. today to establish your Fiduciary Mandate and begin the implementation of your Advanced Estate and Tax Advisory framework.
                             </p>
                         </div>
-                        <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+                        <div className="flex flex-col sm:flex-col gap-3 shrink-0">
                             <Link href="/contact"
                                 className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full font-heading text-navy-deep text-sm font-bold uppercase tracking-wider bg-gradient-to-r from-gold to-gold-light hover:from-gold-light hover:to-gold transition-all duration-300 hover:shadow-[0_8px_32px_rgba(201,168,76,0.3)] hover:-translate-y-0.5">
-                                Contact Us <ArrowRight />
+                                INITIATE GOVERNANCE AUDIT <ArrowRight />
                             </Link>
                             <Link href="/services"
                                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full border border-white/20 hover:border-white/40 text-white font-body text-sm tracking-wide transition-all duration-300 hover:bg-white/5">
-                                Our Services
+                                VIEW THE FIDUCIARY FRAMEWORK
                             </Link>
                         </div>
                     </div>
