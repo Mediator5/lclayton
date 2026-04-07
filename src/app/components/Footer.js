@@ -7,7 +7,7 @@ const OFFICES = [
 
     {
         name: "Office",
-        address: ["200 S Andrews Ave Ste 504Fort Lauderdale, FL 33301"],
+        address: ["200 South Andrews Ave. Suite 504 Fort Lauderdale, FL 33301 P: 800-334-9809"],
         phone: "800-334-9809",
         phoneFmt: "800-334-9809",
         mapUrl: "https://maps.google.com/?q=8403+Colesville+Road+Suite+1100+Silver+Spring+MD+20910",
@@ -132,11 +132,10 @@ export default function Footer() {
                                 <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold">Get In Touch</span>
                             </div>
                             <h2 className="font-heading text-white text-3xl font-bold mb-2 leading-tight">
-                                Let&apos;s Start a<br />
-                                <em className="not-italic text-gold">Conversation</em>
+                                INITIATE THE FIDUCIARY MANDATE
                             </h2>
                             <p className="font-body text-slate-400 text-sm leading-relaxed mb-8 max-w-sm">
-                                Ready to take control of your financial future? Reach out today and let&apos;s talk about your goals.
+                                Ready to establish Structural Oversight for your private estate? Contact the Firm today to define your Fiduciary Mandate and begin the implementation of your Advanced Estate and Tax Advisory framework."
                             </p>
 
                             {submitted ? (
@@ -208,7 +207,7 @@ export default function Footer() {
                                transition-all duration-300 hover:shadow-[0_8px_32px_rgba(201,168,76,0.3)]
                                hover:-translate-y-0.5"
                                     >
-                                        Send Message
+                                        SUBMIT GOVERNANCE INQUIRY
                                     </button>
                                 </div>
                             )}

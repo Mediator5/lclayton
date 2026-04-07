@@ -39,18 +39,24 @@ const MILESTONES = [
 
 const TEAM = [
     {
-        name: "Latravia Clayton", credentials: "",
-        role: "Financial Advisor & Founder",
+        name: "Latravia Clayton", credentials: "CFP®",
+        role: "Chief Administrator & Founder ",
         phone: "800-334-9809", email: "contact@lclaytonservicesinc.com",
-        initials: "LC", tenure: "Advisor since 2003 · Founded L Clayton Services 2015",
+        initials: "LC", tenure: "Professional Mandate since 2015 · Founded L Clayton Services 2015",
         bio: [
-            "As Founder and Financial Advisor at L Clayton Services Inc. Latravia brings over 20 years of experience helping individuals and families pursue their financial goals with clarity and confidence. He specializes in retirement planning, tax strategy, and wealth management.",
-            "Latravia obtained the CERTIFIED FINANCIAL PLANNER™  designation in 2009. He holds a bachelor's degree in Finance with a minor in Sociology from Virginia Tech, and holds FINRA Series 7, Series 24, and Series 66 licenses through LPL Financial, along with state insurance and annuity licenses.",
-            "After being recruited to the D.C. area in 2007 to lead a team of new advisors, Latravia discovered his passion for working with clients one-on-one. In 2015, he became an independent advisor so he could have the freedom and resources to deliver truly personalized advice, tools, and services.",
-            "What he loves most? Giving someone the green light to retire — or to take that dream trip — because they have saved and invested wisely along the way. Outside of work, he enjoys time with his wife Jill and their two children, and is an avid drummer.",
+            "L Clayton Services Inc is an elite financial and business consulting firm dedicated to the structural fortification of private estates, entrepreneurs, and organizations. Founded on the principle that Structural Integrity and Financial Literacy are the non-negotiable foundations of Generational Wealth, the Firm bridges the gap between traditional systems and modern wealth-building strategies.",
+            "Since its inception in 2015, the Firm has operated with a mandate of absolute independence, ensuring the administrative freedom required to deliver uncompromised Structural Wealth Oversight. As Founder and Administrator, Latravia brings over 20 years of experience across financial consulting, tax advisory, trust architecture, and business development.",
+            "As an Authorized Electronic Return Originator (ERO) and Certified Financial Planner™, Latravia integrates advanced tax advisory with Private Trust Architecture to ensure the estate remains a tax-indemnified environment for the Principal and their heirs. As a Commissioned Notary, she provides the official authentication required for complex estate mandates, ensuring all commercial and succession documents maintain absolute legal finality.",
+            "The Firm's advisory is built on four pillars: Trust & Vessel Architecture — engineering private legal structures for probate-free generational transition; ERO Transmittal & Compliance — managing the formal interface with federal agencies for secure, high-priority reporting; Tax Indemnification Strategy — implementing structural wealth oversight through private reserves (IUL) for tax-free liquidity; and Contractual Authentication — providing notarial finality for complex estate and succession mandates.",
         ],
-        specialties: ["Retirement Planning", "Tax Strategy", "Wealth Management", "Federal Benefits", "Estate Planning"],
-        licenses: ["", "Series 7", "Series 24", "Series 66", "LPL Financial"],
+        pillars: [
+            { icon: "🏛️", title: "Trust & Vessel Architecture", desc: "Engineering private legal structures to decouple assets from public-risk domains, ensuring probate-free Generational Wealth Transition." },
+            { icon: "📑", title: "ERO Transmittal & Compliance", desc: "Managing the formal interface with federal agencies as an Authorized ERO — secure, high-priority reporting and strategic credit optimization." },
+            { icon: "🛡️", title: "Tax Indemnification Strategy", desc: "Implementing Structural Wealth Oversight through private reserves (IUL) to create tax-free liquidity and long-term equity protection." },
+            { icon: "⚖️", title: "Contractual Authentication", desc: "Providing official notarial authentication for complex estate mandates, ensuring all commercial and succession documents maintain absolute legal finality." },
+        ],
+        specialties: ["📈 BUSINESS STRUCTURING & STARTUP CONSULTING", "📑 TAX ADVISORY & ERO TRANSMITTAL ", "🛡️ STRUCTURAL WEALTH OVERSIGHT  ", "⚖️ PROCUREMENT & NOTARY GOVERNANCE  ", "🏛️ PRIVATE TRUST ARCHITECTURE "],
+        licenses: ["CERTIFIED FINANCIAL PLANNER™", "Authorized ERO ", "Commissioned Notary"],
     },
 ];
 
@@ -483,8 +489,27 @@ function MeetTheTeam() {
                                                     </svg>
                                                 </button>
                                             )}
+
+                                            {/* Four Pillars of Advisory */}
+                                            {member.pillars && expanded[member.name] && (
+                                                <div className="mb-7">
+                                                    <p className="font-body text-[10px] uppercase tracking-widest text-slate-400 mb-3">The Four Pillars of Advisory</p>
+                                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                                        {member.pillars.map((pillar) => (
+                                                            <div key={pillar.title}
+                                                                className="flex items-start gap-3 bg-slate-50 border border-slate-100 rounded-xl p-4 hover:border-gold/20 hover:bg-white transition-all duration-200">
+                                                                <span className="text-xl shrink-0">{pillar.icon}</span>
+                                                                <div>
+                                                                    <h4 className="font-heading text-navy text-xs font-bold mb-1">{pillar.title}</h4>
+                                                                    <p className="font-body text-slate-500 text-[11px] leading-relaxed">{pillar.desc}</p>
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
                                             <div>
-                                                <p className="font-body text-[10px] uppercase tracking-widest text-slate-400 mb-3">Areas of Focus</p>
+                                                <p className="font-body text-[10px] uppercase tracking-widest text-slate-400 mb-3">AREAS OF JURISDICTIONAL EXCELLENCE</p>
                                                 <div className="flex flex-wrap gap-2">
                                                     {member.specialties.map((s) => (
                                                         <span key={s} className="font-body text-xs text-navy bg-navy/5 border border-navy/10 px-3 py-1.5 rounded-full">{s}</span>
@@ -525,7 +550,7 @@ function AboutCTA() {
                         <div className="max-w-2xl">
                             <p className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold mb-3">THE REBIRTH: INITIATE THE MANDATE</p>
                             <h2 className="font-heading text-white text-[clamp(1.6rem,3vw,2.4rem)] leading-tight mb-3">
-                               INITIATE THE SUCCESSION MANDATE
+                                INITIATE THE SUCCESSION MANDATE
                             </h2>
                             <p className="font-body text-slate-300 text-sm leading-relaxed">
                                 Secure the structural integrity of your private estate. Contact L Clayton Services Inc. today to establish your Fiduciary Mandate and begin the implementation of your Advanced Estate and Tax Advisory framework.
