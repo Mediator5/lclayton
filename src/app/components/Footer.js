@@ -34,13 +34,32 @@ const QUICK_LINKS = [
             { label: "Estate Planning", href: "/services/estate-planning" },
             { label: "Wealth Management", href: "/services/wealth-management" },
         ],
+       
         links: [
-            { label: "Tax Advisory & ERO Transmittal", href: "/services/tax-advisory-ero-transmittal" },
-            { label: "Private Trust Architecture", href: "/services/private-trust-architecture" },
-            { label: "Structural Wealth Oversight (IUL)", href: "/services/structural-wealth-oversight-iul" },
-            { label: "Procurement & Notary Governance", href: "/services/procurement-notary-governance" },
-            { label: "Generational Wealth Transition", href: "/services/generational-wealth-transition" },
-            { label: "Risk & Liability Indemnification", href: "/services/risk-liability-indemnification" },
+            {
+                label: "Procurement Governance",
+                href: "/services/the-procurement-governance",
+            },
+            {
+                label: "Retirement Architecture",
+                href: "/services/retirement-planning-for-pre-retirees",
+            },
+            {
+                label: "Tax Indemnification Strategy",
+                href: "/services/tax-strategy",
+            },
+            {
+                label: "Private Estate Governance",
+                href: "/services/estate-planning",
+            },
+            {
+                label: "Structural Wealth Oversight",
+                href: "/services/wealth-management",
+            },
+            {
+                label: "Generational Wealth Transition",
+                href: "/services/generational-wealth-transition",
+            },
         ],
     },
     {

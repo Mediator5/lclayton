@@ -6,6 +6,7 @@ import FiduciaryBanner from "./components/Fiduciarybanner";
 import TeamSection from "./components/Teamsection";
 import BlogPreview from "./components/Blogpreview";
 import Testimonials from "./components/Testimonials";
+import MeetTheTeam from "./components/MeetTheTeamMain";
 
 export default function Home() {
   return (
@@ -16,7 +17,8 @@ export default function Home() {
       <ServicesSection />
       <FiduciaryBanner />
       <Testimonials />
-      <TeamSection />
+      {/* <TeamSection /> */}
+      <MeetTheTeam />
       <BlogPreview />
     </>
   );

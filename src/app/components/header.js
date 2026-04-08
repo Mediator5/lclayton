@@ -22,8 +22,9 @@ const NAV_ITEMS = [
     {
         label: "Services",
         href: "/services",
-        submenu: [
-            { label: "Financial Employes", href: "services/employment-benefits-for-federal-employees" },
+        submenuBefore: [
+
+            { label: "The Procurement Governance", href: "/services/the-procurement-governance" },
             { label: "Retirement Planning For Pre-Retirees", href: "/services/retirement-planning-for-pre-retirees" },
             { label: "Retirement Planning for Retired Individuals", href: "/services/retirement-planning-for-retired-individuals" },
             { label: "Tax Strategy", href: "/services/tax-strategy" },
@@ -31,7 +32,33 @@ const NAV_ITEMS = [
             { label: "Wealth Management", href: "/services/wealth-management" },
             { label: "Small Business Retirement Plans", href: "/services/small-business-retirement-plans" },
             { label: "Financial Planning", href: "/services/financial-planning" },
-            { label: "Education Planning", href: "/services/education-planning" },
+            { label: "Generational Wealth Transition", href: "/services/generational-wealth-transition" },
+        ],
+        submenu: [
+            {
+                label: "Procurement Governance",
+                href: "/services/the-procurement-governance",
+            },
+            {
+                label: "Retirement Architecture",
+                href: "/services/retirement-planning-for-pre-retirees",
+            },
+            {
+                label: "Tax Indemnification Strategy",
+                href: "/services/tax-strategy",
+            },
+            {
+                label: "Private Estate Governance",
+                href: "/services/estate-planning",
+            },
+            {
+                label: "Structural Wealth Oversight",
+                href: "/services/wealth-management",
+            },
+            {
+                label: "Generational Wealth Transition",
+                href: "/services/generational-wealth-transition",
+            },
         ],
     },
     {
