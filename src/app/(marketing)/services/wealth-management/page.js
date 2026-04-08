@@ -106,19 +106,19 @@ const SERVICES = [
 
 const WHY_ITEMS = [
     {
-        stat: "Erosion",
-        label: "is the silent threat",
-        desc: "In not managing your assets diligently, you could leave them exposed to erosion, destruction, or depletion — without ever realizing it is happening.",
+        stat: "Tax Depletion",
+        label: "TAX DEPLETION IS THE ADMINISTRATIVE SILENT THREAT",
+        desc: "Without a definitive Strategic Structural Architecture (SSA), your private wealth remains exposed to the public risk domain—vulnerable to Tax Depletion, third-party intermeddling, and Administrative Decay. These threats often manifest without immediate detection, compromising your estate's integrity until it is too late. We provide the rigorous oversight required to ensure your 'Res' is contractually fortified against such liabilities.",
     },
     {
-        stat: "Time",
-        label: "is the resource most people lack",
-        desc: "Even if you have the skill to manage your portfolio, the time and patience required are significant. Most people simply have other priorities.",
+        stat: "Capacity",
+        label: "is the Constraint of the Principal",
+        desc: "While many possess the acumen to oversee a ledger, the Administrative Capacity required for constant reconciliation and jurisdictional compliance is a full-time mandate. Most Principals have higher priorities; we provide the professional oversight that ensures your 'Res' (the estate) remains structurally sound while you focus on your vision.",
     },
     {
-        stat: "Strategy",
-        label: "is what separates results from hope",
-        desc: "DIY investing is accessible. Disciplined, goal-driven wealth management — with both long-term and short-term allocation plans — is what actually builds lasting wealth.",
+        stat: "Architecture",
+        label: "is the Foundation of Commercial Certainty",
+        desc: "Speculative 'DIY' participation is accessible, but it lacks the Structural Integrity required for generational wealth. We move beyond 'allocation plans' to Contractual Wealth Architecting. By utilizing IULs and Private Trusts, we replace 'hope' with a disciplined, goal-driven framework that builds and protects lasting value.",
     },
 ];
 
@@ -319,11 +319,11 @@ function WhyWealthManagement() {
                 <div className={`mb-12 max-w-xl transition-all duration-700 ease-out ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
                     <div className="inline-flex items-center gap-3 mb-4">
                         <span className="w-8 h-px bg-gold" />
-                        <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold">Why It Matters</span>
+                        <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold">Fiduciary Oversight</span>
                     </div>
                     <h2 className="font-heading text-navy text-[clamp(1.8rem,3.5vw,2.8rem)] leading-tight">
-                        Assets left unmanaged<br />
-                        <em className="not-italic text-gold">do not manage themselves.</em>
+                        Assets Without Governance <br />
+                        <em className="not-italic text-gold">Face Administrative Decay.</em>
                     </h2>
                 </div>
 
@@ -352,11 +352,19 @@ function WhyWealthManagement() {
                     </div>
                     <div>
                         <p className="font-heading text-navy text-base font-bold mb-1">
-                            Wealth Management is about managing <em className="not-italic text-gold">your</em> financial assets.
+                            Wealth Governance is the Management of   <em className="not-italic text-gold">your</em> Private Estate.
+                        </p>
+                        <p className="font-body text-slate-500 text-sm leading-relaxed mb-5">
+                            We do not offer generic templates or public-market models built for the masses. We provide a Prudent, Fiduciary Approach that begins with your specific mandate and builds a custom architectural structure from there. This is not just management; it is the active defense of what matters most to you..
+                        </p>
+                        <p className="font-heading text-navy text-base font-bold mb-1">
+                            Structural Wealth & Legacy Architecting
                         </p>
                         <p className="font-body text-slate-500 text-sm leading-relaxed">
-                            Not a generic template. Not a model portfolio built for someone else. A prudent,
-                            conscientious approach that starts with your objectives and builds everything from there.
+                            Wealth is not merely a collection of speculative market positions; it is a meticulously governed estate. At L Clayton Services Inc., we move away from the volatility of traditional brokerage models.
+                            We focus on Contractual Wealth and Private Asset Protection through the strategic implementation of Indexed Universal Life (IUL) policies and robust Trust frameworks. Our mission is to ensure your capital is not just "invested," but structurally fortified.
+                            By integrating Life Insurance solutions with private Trust services, we create a "Closed-Loop" financial strategy that ensures your assets work together to protect your vision.
+
                         </p>
                     </div>
                 </div>

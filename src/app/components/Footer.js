@@ -19,29 +19,37 @@ const QUICK_LINKS = [
     {
         heading: "Company",
         links: [
-            { label: "About Us", href: "/about" },
-            { label: "Our Philosophy", href: "/about/philosophy" },
-            { label: "Our Process", href: "/about/process" },
-            { label: "Meet the Team", href: "/about/team" },
+            { label: "About the Firm", href: "/about" },
+            { label: "Our Fiduciary Philosophy", href: "/about/philosophy" },
+            { label: "The Governance Process", href: "/about/process" },
+            { label: "The Administrative Team", href: "/about/team" },
         ],
     },
     {
         heading: "Services",
-        links: [
+        links1: [
             { label: "Federal Employees", href: "/services/federal-employees" },
             { label: "Retirement Planning", href: "/services/pre-retirees" },
             { label: "Tax Strategy", href: "/services/tax-strategy" },
             { label: "Estate Planning", href: "/services/estate-planning" },
             { label: "Wealth Management", href: "/services/wealth-management" },
         ],
+        links: [
+            { label: "Tax Advisory & ERO Transmittal", href: "/services/tax-advisory-ero-transmittal" },
+            { label: "Private Trust Architecture", href: "/services/private-trust-architecture" },
+            { label: "Structural Wealth Oversight (IUL)", href: "/services/structural-wealth-oversight-iul" },
+            { label: "Procurement & Notary Governance", href: "/services/procurement-notary-governance" },
+            { label: "Generational Wealth Transition", href: "/services/generational-wealth-transition" },
+            { label: "Risk & Liability Indemnification", href: "/services/risk-liability-indemnification" },
+        ],
     },
     {
         heading: "Resources",
         links: [
-            { label: "Blog & Insights", href: "/resources/blog" },
-            { label: "Case Studies", href: "/resources/case-studies" },
-            { label: "Whitepapers", href: "/resources/whitepapers" },
-            { label: "FAQs", href: "/resources/faqs" },
+            { label: "Administrative Briefings", href: "/resources/blog" },
+            { label: "Structural Case Studies", href: "/resources/case-studies" },
+            { label: "Fiduciary Whitepapers", href: "/resources/whitepapers" },
+            { label: "Administrative Clarifications (FAQs)", href: "/resources/faqs" },
         ],
     },
 ];
