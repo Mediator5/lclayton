@@ -42,7 +42,42 @@ const isPendingPage = (pathname) => pathname === "/pending";
 // ─── Middleware ───────────────────────────────────────────────────
 
 export async function middleware(request) {
-  const { pathname } = request.nextUrl;
+  const { pathname, searchParams } = request.nextUrl;
+
+  // 0. Safety net for auth links that land in the wrong place.
+  //
+  //    When a redirect target is not in Supabase's allowlist, Supabase falls
+  //    back to the Site URL — dumping "/?code=..." on the homepage, where
+  //    nothing handles it and the reset silently dies. Rather than lose the
+  //    code, hand it to the callback route.
+  //
+  //    Fix the allowlist too; this only stops a misconfiguration from
+  //    breaking password resets outright.
+  if (pathname === "/") {
+    const code = searchParams.get("code");
+    const tokenHash = searchParams.get("token_hash");
+
+    if (code) {
+      const url = new URL("/auth/callback", request.url);
+      url.searchParams.set("code", code);
+      url.searchParams.set(
+        "next",
+        searchParams.get("next") || "/reset-password"
+      );
+      return NextResponse.redirect(url);
+    }
+
+    if (tokenHash) {
+      const url = new URL("/auth/confirm", request.url);
+      url.searchParams.set("token_hash", tokenHash);
+      url.searchParams.set("type", searchParams.get("type") || "recovery");
+      url.searchParams.set(
+        "next",
+        searchParams.get("next") || "/reset-password"
+      );
+      return NextResponse.redirect(url);
+    }
+  }
 
   // 1. Public pages pass straight through — no Supabase call, no latency.
   if (isPublic(pathname)) {
