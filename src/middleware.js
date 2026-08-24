@@ -22,7 +22,7 @@ const PUBLIC_PREFIXES = [
   // /reset-password guards itself by checking for a recovery session.
   "/forgot-password",
   "/reset-password",
-  "/auth/callback",
+  "/auth",
 ];
 
 // Signed-in users should not see these.
