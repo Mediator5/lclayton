@@ -1,114 +1,152 @@
 "use client";
 
-import { SignUp } from "@clerk/nextjs";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
+import { createClient } from "@/lib/supabase/client";
+import { AuthShell, authInput, AuthSubmit, AuthError } from "../auth-ui";
+
+const MIN_PASSWORD = 8;
 
 export default function SignUpPage() {
+  const router = useRouter();
+
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirm: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [formError, setFormError] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  const set = (k, v) => {
+    setForm((p) => ({ ...p, [k]: v }));
+    if (errors[k]) setErrors((p) => ({ ...p, [k]: "" }));
+  };
+
+  const validate = () => {
+    const e = {};
+    if (!form.firstName.trim()) e.firstName = "First name is required.";
+    if (!form.lastName.trim()) e.lastName = "Last name is required.";
+    if (!form.email.trim()) e.email = "Email is required.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+      e.email = "Please enter a valid email address.";
+    if (!form.password) e.password = "Password is required.";
+    else if (form.password.length < MIN_PASSWORD)
+      e.password = `Use at least ${MIN_PASSWORD} characters.`;
+    if (form.confirm !== form.password)
+      e.confirm = "The two passwords do not match.";
+    return e;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const e = validate();
+    if (Object.keys(e).length) {
+      setErrors(e);
+      return;
+    }
+
+    setErrors({});
+    setFormError("");
+    setBusy(true);
+
+    const supabase = createClient();
+    const fullName = `${form.firstName.trim()} ${form.lastName.trim()}`.trim();
+
+    // full_name and phone travel in user_metadata; a database trigger on
+    // auth.users copies them into public.users along with status "pending".
+    const { data, error } = await supabase.auth.signUp({
+      email: form.email.trim(),
+      password: form.password,
+      options: {
+        data: {
+          full_name: fullName,
+          phone: form.phone.trim(),
+        },
+      },
+    });
+
+    if (error) {
+      setFormError(error.message);
+      setBusy(false);
+      return;
+    }
+
+    // With email confirmation switched off, signUp returns a live session
+    // and the visitor is already signed in. If confirmation is ever turned
+    // back on, session will be null — say so rather than looking broken.
+    if (!data.session) {
+      setBusy(false);
+      setFormError(
+        "Check your inbox for a confirmation link to finish creating your account."
+      );
+      return;
+    }
+
+    router.push("/pending");
+    router.refresh();
+  };
+
+  const field = (id, label, type, autoComplete, placeholder) => (
+    <div>
+      <label
+        htmlFor={id}
+        className="font-body text-slate-300 text-xs uppercase tracking-wider mb-1.5 block"
+      >
+        {label}
+      </label>
+      <input
+        id={id}
+        type={type}
+        autoComplete={autoComplete}
+        value={form[id]}
+        onChange={(e) => set(id, e.target.value)}
+        className={authInput(errors[id])}
+        placeholder={placeholder}
+      />
+      {errors[id] && (
+        <p className="font-body text-red-300 text-xs mt-1.5">{errors[id]}</p>
+      )}
+    </div>
+  );
+
   return (
-    <>
-      <style>{`
-        .auth-bg {
-          background-color: var(--color-navy-deep);
-          background-image:
-            radial-gradient(ellipse 60% 55% at 88% 20%, color-mix(in srgb, var(--color-navy) 82%, transparent) 0%, transparent 60%),
-            radial-gradient(ellipse 55% 65% at 8%  88%, color-mix(in srgb, var(--color-gold) 11%, transparent) 0%, transparent 55%);
-          min-height: 100vh;
-        }
-        .auth-grain::after {
-          content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.3;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-        }
-        @keyframes auth-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .auth-ring { animation: auth-spin 65s linear infinite; }
-
-        .cl-card {
-          background: transparent !important;
-          box-shadow: none !important;
-          border: none !important;
-        }
-        .cl-rootBox { width: 100%; }
-        .cl-headerTitle { color: white !important; font-family: var(--font-heading) !important; }
-        .cl-headerSubtitle { color: rgb(148 163 184) !important; }
-        .cl-formFieldLabel { color: rgb(203 213 225) !important; }
-        .cl-formFieldInput {
-          background: rgba(255,255,255,0.08) !important;
-          border-color: rgba(255,255,255,0.15) !important;
-          color: white !important;
-        }
-        .cl-formFieldInput:focus {
-          border-color: var(--color-gold) !important;
-          box-shadow: 0 0 0 2px rgba(201,168,76,0.2) !important;
-        }
-        .cl-formButtonPrimary {
-          background: linear-gradient(to right, var(--color-gold), var(--color-gold-light)) !important;
-          color: var(--color-navy-deep) !important;
-          font-weight: 700 !important;
-        }
-        .cl-formButtonPrimary:hover {
-          background: linear-gradient(to right, var(--color-gold-light), var(--color-gold)) !important;
-        }
-        .cl-footerActionLink { color: var(--color-gold) !important; }
-        .cl-dividerLine { background: rgba(255,255,255,0.1) !important; }
-        .cl-dividerText { color: rgb(148 163 184) !important; }
-        .cl-socialButtonsBlockButton {
-          background: rgba(255,255,255,0.06) !important;
-          border-color: rgba(255,255,255,0.12) !important;
-          color: white !important;
-        }
-      `}</style>
-
-      <div className="auth-bg auth-grain relative overflow-hidden flex items-center justify-center px-4 py-16">
-        <div className="auth-ring absolute -right-44 -top-44 w-[600px] h-[600px] rounded-full border border-white/[0.04] pointer-events-none" />
-        <div className="absolute -right-28 -top-28 w-[440px] h-[440px] rounded-full border border-gold/[0.05] pointer-events-none" />
-        <div className="absolute -left-32 -bottom-32 w-[400px] h-[400px] rounded-full border border-white/[0.03] pointer-events-none" />
-
-        <div className="relative z-10 w-full max-w-md">
-
-          {/* Logo + brand */}
-          <div className="flex flex-col items-center mb-8">
-            <Link href="/" className="mb-5">
-              <Image
-                src="/L CLAYTON.jpeg"
-                alt="L Clayton Services"
-                width={70}
-                height={70}
-                className="rounded-xl"
-              />
-            </Link>
-            <div className="inline-flex items-center gap-3 mb-2">
-              <span className="w-6 h-px bg-gold" />
-              <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold">Client Portal</span>
-              <span className="w-6 h-px bg-gold" />
-            </div>
-            <h1 className="font-heading text-white text-2xl font-bold text-center">
-              Create Your Account
-            </h1>
-            <p className="font-body text-slate-400 text-sm mt-1 text-center max-w-xs">
-              Sign up below. Latravia will review and approve your account before you gain access.
-            </p>
-          </div>
-
-          {/* Clerk SignUp component */}
-          <SignUp
-            appearance={{
-              elements: {
-                rootBox: "w-full",
-                card:    "w-full p-0",
-              },
-            }}
-          />
-
-          {/* Back to site */}
-          <p className="font-body text-slate-500 text-xs text-center mt-6">
-            Already have an account?{" "}
-            <Link href="/sign-in" className="text-gold hover:text-gold-light transition-colors">
-              Sign in here
-            </Link>
-          </p>
-
+    <AuthShell
+      eyebrow="Client Portal"
+      title="Create Your Account"
+      subtitle="Sign up below. Latravia will review and approve your account before you gain access."
+    >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <div className="grid grid-cols-2 gap-4">
+          {field("firstName", "First Name", "text", "given-name", "Jane")}
+          {field("lastName", "Last Name", "text", "family-name", "Doe")}
         </div>
-      </div>
-    </>
+
+        {field("email", "Email Address", "email", "email", "you@example.com")}
+        {field("phone", "Phone (optional)", "tel", "tel", "301-555-0100")}
+        {field("password", "Password", "password", "new-password", "At least 8 characters")}
+        {field("confirm", "Confirm Password", "password", "new-password", "Repeat your password")}
+
+        <AuthError message={formError} />
+
+        <AuthSubmit busy={busy} idle="Create Account" busyLabel="Creating…" />
+      </form>
+
+      <p className="font-body text-slate-500 text-xs text-center mt-7">
+        Already have an account?{" "}
+        <Link
+          href="/sign-in"
+          className="text-gold hover:text-gold-light transition-colors"
+        >
+          Sign in here
+        </Link>
+      </p>
+    </AuthShell>
   );
 }

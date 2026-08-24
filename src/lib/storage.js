@@ -1,4 +1,4 @@
-import { supabaseServer } from "@/lib/supabase-server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 
 // ─── Constants ────────────────────────────────────────────────────
 
@@ -37,15 +37,15 @@ export function validateFile(file) {
 
 
 // ─── Upload a file to Supabase Storage ───────────────────────────
-// Stores at: client-documents/{clerkId}/{timestamp}-{filename}
+// Stores at: client-documents/{userId}/{timestamp}-{filename}
 // Returns the storage path on success.
 
-export async function uploadFile({ file, clerkId, filename }) {
+export async function uploadFile({ file, userId, filename }) {
   const timestamp   = Date.now();
   const safeName    = filename.replace(/[^a-zA-Z0-9._-]/g, "_");
-  const storagePath = `${clerkId}/${timestamp}-${safeName}`;
+  const storagePath = `${userId}/${timestamp}-${safeName}`;
 
-  const { error } = await supabaseServer.storage
+  const { error } = await supabaseAdmin.storage
     .from(BUCKET)
     .upload(storagePath, file, {
       contentType:  file.type,
@@ -64,7 +64,7 @@ export async function uploadFile({ file, clerkId, filename }) {
 // URL expires after SIGNED_URL_TTL seconds.
 
 export async function getSignedUrl(storagePath) {
-  const { data, error } = await supabaseServer.storage
+  const { data, error } = await supabaseAdmin.storage
     .from(BUCKET)
     .createSignedUrl(storagePath, SIGNED_URL_TTL);
 
@@ -78,7 +78,7 @@ export async function getSignedUrl(storagePath) {
 // Called when a document record is deleted.
 
 export async function deleteFile(storagePath) {
-  const { error } = await supabaseServer.storage
+  const { error } = await supabaseAdmin.storage
     .from(BUCKET)
     .remove([storagePath]);
 

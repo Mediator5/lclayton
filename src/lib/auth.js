@@ -1,120 +1,99 @@
-import { auth, currentUser } from "@clerk/nextjs/server";
-import { supabaseServer } from "@/lib/supabase-server";
+import { createClient } from "@/lib/supabase/server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 
-// ─── Get the current Clerk session (server-side) ──────────────────
-// Returns { userId } or redirects if not signed in.
-// Use in API routes and server components.
+// ─── Guards for route handlers and server components ──────────────
+//
+// Every check here is made against the SERVER, not against anything the
+// browser sent. getUser() revalidates the token with Supabase, and the
+// role/status come from the database each time — so a user cannot get
+// past these by editing a cookie or holding a stale token.
+//
+// The require* helpers throw a Response. Catch it like this:
+//
+//   try   { const user = await requireAdmin(); ... }
+//   catch (err) { if (err instanceof Response) return err; ... }
 
-export async function getSession() {
-  const { userId } = await auth();
-  return { userId };
+const json = (body, status) =>
+  new Response(JSON.stringify(body), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
+
+// ─── Who is signed in? ────────────────────────────────────────────
+// Returns the Supabase auth user, or null.
+
+export async function getAuthUser() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  return user ?? null;
 }
 
+// ─── The profile row for a given auth user id ─────────────────────
+// Read with the admin client so it works regardless of RLS.
 
-// ─── Get the full user row from Supabase ──────────────────────────
-// Looks up the users table by clerk_id.
-// Returns the full user object or null.
+export async function getUserProfile(userId) {
+  if (!userId) return null;
 
-export async function getSupabaseUser(clerkId) {
-  const { data, error } = await supabaseServer
+  const { data, error } = await supabaseAdmin
     .from("users")
     .select("*")
-    .eq("clerk_id", clerkId)
+    .eq("id", userId)
     .single();
 
   if (error) return null;
   return data;
 }
 
+// ─── Signed-in user + profile, or null ────────────────────────────
+// Convenience for server components that want to render either way.
+
+export async function getCurrentUser() {
+  const user = await getAuthUser();
+  if (!user) return null;
+
+  const profile = await getUserProfile(user.id);
+  if (!profile) return null;
+
+  return { ...profile, email: profile.email ?? user.email };
+}
 
 // ─── Require authentication ───────────────────────────────────────
-// Use at the top of any API route that needs a logged-in user.
-// Returns the Supabase user row or throws a 401 response.
+// Returns the profile row, or throws 401 / 404.
 
 export async function requireAuth() {
-  const { userId } = await auth();
+  const user = await getAuthUser();
 
-  if (!userId) {
-    throw new Response(JSON.stringify({ error: "Unauthorized" }), {
-      status: 401,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
+  if (!user) throw json({ error: "Unauthorized" }, 401);
 
-  const user = await getSupabaseUser(userId);
+  const profile = await getUserProfile(user.id);
 
-  if (!user) {
-    throw new Response(JSON.stringify({ error: "User not found" }), {
-      status: 404,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
+  if (!profile) throw json({ error: "User not found" }, 404);
 
-  return user;
+  return profile;
 }
 
-
-// ─── Require approved client ──────────────────────────────────────
-// Use in client dashboard API routes.
-// Throws 403 if user is pending or denied.
+// ─── Require an approved client ───────────────────────────────────
 
 export async function requireApprovedClient() {
-  const user = await requireAuth();
+  const profile = await requireAuth();
 
-  if (user.status !== "approved") {
-    throw new Response(JSON.stringify({ error: "Account not yet approved" }), {
-      status: 403,
-      headers: { "Content-Type": "application/json" },
-    });
+  if (profile.status !== "approved") {
+    throw json({ error: "Account not yet approved" }, 403);
   }
 
-  return user;
+  return profile;
 }
 
-
-// ─── Require admin ────────────────────────────────────────────────
-// Use in all /admin API routes.
-// Throws 403 if user is not an admin.
+// ─── Require an admin ─────────────────────────────────────────────
 
 export async function requireAdmin() {
-  const user = await requireAuth();
+  const profile = await requireAuth();
 
-  if (user.role !== "admin") {
-    throw new Response(JSON.stringify({ error: "Forbidden" }), {
-      status: 403,
-      headers: { "Content-Type": "application/json" },
-    });
+  if (profile.role !== "admin") {
+    throw json({ error: "Forbidden" }, 403);
   }
 
-  return user;
-}
-
-
-// ─── Sync Clerk user to Supabase ──────────────────────────────────
-// Called after sign-up via a Clerk webhook.
-// Creates a new row in public.users with status "pending".
-
-export async function syncUserToSupabase(clerkUser) {
-  const { id, emailAddresses, firstName, lastName } = clerkUser;
-
-  const email     = emailAddresses[0]?.emailAddress ?? "";
-  const fullName  = [firstName, lastName].filter(Boolean).join(" ");
-
-  const { data, error } = await supabaseServer
-    .from("users")
-    .upsert(
-      {
-        clerk_id:  id,
-        email,
-        full_name: fullName,
-        role:      "client",
-        status:    "pending",
-      },
-      { onConflict: "clerk_id" }
-    )
-    .select()
-    .single();
-
-  if (error) throw error;
-  return data;
+  return profile;
 }

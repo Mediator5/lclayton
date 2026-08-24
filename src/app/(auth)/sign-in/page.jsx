@@ -1,119 +1,173 @@
 "use client";
 
-import { SignIn } from "@clerk/nextjs";
+import { Suspense, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
+import { createClient } from "@/lib/supabase/client";
+import { AuthShell, authInput, AuthSubmit, AuthError } from "../auth-ui";
+
+function SignInForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectUrl = searchParams.get("redirect_url");
+
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState({});
+  const [formError, setFormError] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  const set = (k, v) => {
+    setForm((p) => ({ ...p, [k]: v }));
+    if (errors[k]) setErrors((p) => ({ ...p, [k]: "" }));
+  };
+
+  const validate = () => {
+    const e = {};
+    if (!form.email.trim()) e.email = "Email is required.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
+      e.email = "Please enter a valid email address.";
+    if (!form.password) e.password = "Password is required.";
+    return e;
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const e = validate();
+    if (Object.keys(e).length) {
+      setErrors(e);
+      return;
+    }
+
+    setErrors({});
+    setFormError("");
+    setBusy(true);
+
+    const supabase = createClient();
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: form.email.trim(),
+      password: form.password,
+    });
+
+    if (error) {
+      // Supabase returns the same message for a wrong password and an
+      // unknown address, so the form cannot be used to discover who holds
+      // an account. Keep it that way.
+      setFormError(
+        error.message === "Invalid login credentials"
+          ? "That email and password combination is not recognised."
+          : error.message
+      );
+      setBusy(false);
+      return;
+    }
+
+    // Where should they land? They can read their own row under RLS.
+    const { data: profile } = await supabase
+      .from("users")
+      .select("role, status")
+      .eq("id", data.user.id)
+      .single();
+
+    let destination = "/pending";
+    if (profile?.status === "approved") {
+      destination = profile.role === "admin" ? "/admin" : "/dashboard";
+      // Only ever honour a same-site path — never an absolute URL.
+      if (redirectUrl && /^\/(?!\/)/.test(redirectUrl)) {
+        destination = redirectUrl;
+      }
+    }
+
+    router.push(destination);
+    router.refresh();
+  };
+
+  return (
+    <AuthShell
+      eyebrow="Client Portal"
+      title="Welcome Back"
+      subtitle="Sign in to your L Clayton Services account"
+    >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <div>
+          <label
+            htmlFor="email"
+            className="font-body text-slate-300 text-xs uppercase tracking-wider mb-1.5 block"
+          >
+            Email Address
+          </label>
+          <input
+            id="email"
+            type="email"
+            autoComplete="email"
+            value={form.email}
+            onChange={(e) => set("email", e.target.value)}
+            className={authInput(errors.email)}
+            placeholder="you@example.com"
+          />
+          {errors.email && (
+            <p className="font-body text-red-300 text-xs mt-1.5">
+              {errors.email}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label
+            htmlFor="password"
+            className="font-body text-slate-300 text-xs uppercase tracking-wider mb-1.5 block"
+          >
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            autoComplete="current-password"
+            value={form.password}
+            onChange={(e) => set("password", e.target.value)}
+            className={authInput(errors.password)}
+            placeholder="••••••••"
+          />
+          {errors.password && (
+            <p className="font-body text-red-300 text-xs mt-1.5">
+              {errors.password}
+            </p>
+          )}
+        </div>
+
+        <AuthError message={formError} />
+
+        <AuthSubmit busy={busy} idle="Sign In" busyLabel="Signing in…" />
+      </form>
+
+      <p className="font-body text-slate-500 text-xs text-center mt-7">
+        Don&apos;t have an account yet?{" "}
+        <Link
+          href="/sign-up"
+          className="text-gold hover:text-gold-light transition-colors"
+        >
+          Create one here
+        </Link>
+      </p>
+
+      <p className="font-body text-slate-500 text-xs text-center mt-2">
+        Not a client yet?{" "}
+        <Link
+          href="/contact"
+          className="text-gold hover:text-gold-light transition-colors"
+        >
+          Get in touch with us
+        </Link>
+      </p>
+    </AuthShell>
+  );
+}
 
 export default function SignInPage() {
   return (
-    <>
-      <style>{`
-        .auth-bg {
-          background-color: var(--color-navy-deep);
-          background-image:
-            radial-gradient(ellipse 60% 55% at 88% 20%, color-mix(in srgb, var(--color-navy) 82%, transparent) 0%, transparent 60%),
-            radial-gradient(ellipse 55% 65% at 8%  88%, color-mix(in srgb, var(--color-gold) 11%, transparent) 0%, transparent 55%);
-          min-height: 100vh;
-        }
-        .auth-grain::after {
-          content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.3;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-        }
-        @keyframes auth-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .auth-ring { animation: auth-spin 65s linear infinite; }
-
-        /* Override Clerk card styles to be transparent */
-        .cl-card {
-          background: transparent !important;
-          box-shadow: none !important;
-          border: none !important;
-        }
-        .cl-rootBox { width: 100%; }
-        .cl-headerTitle { color: white !important; font-family: var(--font-heading) !important; }
-        .cl-headerSubtitle { color: rgb(148 163 184) !important; }
-        .cl-formFieldLabel { color: rgb(203 213 225) !important; }
-        .cl-formFieldInput {
-          background: rgba(255,255,255,0.08) !important;
-          border-color: rgba(255,255,255,0.15) !important;
-          color: white !important;
-        }
-        .cl-formFieldInput:focus {
-          border-color: var(--color-gold) !important;
-          box-shadow: 0 0 0 2px rgba(201,168,76,0.2) !important;
-        }
-        .cl-formButtonPrimary {
-          background: linear-gradient(to right, var(--color-gold), var(--color-gold-light)) !important;
-          color: var(--color-navy-deep) !important;
-          font-weight: 700 !important;
-        }
-        .cl-formButtonPrimary:hover {
-          background: linear-gradient(to right, var(--color-gold-light), var(--color-gold)) !important;
-        }
-        .cl-footerActionLink { color: var(--color-gold) !important; }
-        .cl-dividerLine { background: rgba(255,255,255,0.1) !important; }
-        .cl-dividerText { color: rgb(148 163 184) !important; }
-        .cl-socialButtonsBlockButton {
-          background: rgba(255,255,255,0.06) !important;
-          border-color: rgba(255,255,255,0.12) !important;
-          color: white !important;
-        }
-        .cl-identityPreviewText { color: white !important; }
-        .cl-identityPreviewEditButton { color: var(--color-gold) !important; }
-      `}</style>
-
-      <div className="auth-bg auth-grain relative overflow-hidden flex items-center justify-center px-4 py-16">
-        {/* Decorative rings */}
-        <div className="auth-ring absolute -right-44 -top-44 w-[600px] h-[600px] rounded-full border border-white/[0.04] pointer-events-none" />
-        <div className="absolute -right-28 -top-28 w-[440px] h-[440px] rounded-full border border-gold/[0.05] pointer-events-none" />
-        <div className="absolute -left-32 -bottom-32 w-[400px] h-[400px] rounded-full border border-white/[0.03] pointer-events-none" />
-
-        <div className="relative z-10 w-full max-w-md">
-
-          {/* Logo + brand */}
-          <div className="flex flex-col items-center mb-8">
-            <Link href="/" className="mb-5">
-              <Image
-                src="/L CLAYTON.jpeg"
-                alt="L Clayton Services"
-                width={70}
-                height={70}
-                className="rounded-xl"
-              />
-            </Link>
-            <div className="inline-flex items-center gap-3 mb-2">
-              <span className="w-6 h-px bg-gold" />
-              <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold">Client Portal</span>
-              <span className="w-6 h-px bg-gold" />
-            </div>
-            <h1 className="font-heading text-white text-2xl font-bold text-center">
-              Welcome Back
-            </h1>
-            <p className="font-body text-slate-400 text-sm mt-1 text-center">
-              Sign in to your L Clayton Services account
-            </p>
-          </div>
-
-          {/* Clerk SignIn component */}
-          <SignIn
-            appearance={{
-              elements: {
-                rootBox:    "w-full",
-                card:       "w-full p-0",
-                headerTitle: "font-heading text-white text-xl",
-              },
-            }}
-          />
-
-          {/* Back to site */}
-          <p className="font-body text-slate-500 text-xs text-center mt-6">
-            Not a client yet?{" "}
-            <Link href="/contact" className="text-gold hover:text-gold-light transition-colors">
-              Get in touch with us
-            </Link>
-          </p>
-
-        </div>
-      </div>
-    </>
+    <Suspense fallback={null}>
+      <SignInForm />
+    </Suspense>
   );
 }

@@ -1,86 +1,67 @@
 import { requireAdmin } from "@/lib/auth";
-import { supabaseServer } from "@/lib/supabase-server";
-import { clerkClient } from "@clerk/nextjs/server";
+import { supabaseAdmin } from "@/lib/supabase/admin";
 
-// ─── POST /api/admin/approve-client ──────────────────────────────
+// ─── POST /api/admin/approve-client ───────────────────────────────
 // Approves a pending client registration.
-// Body: { userId: string }  ← the Supabase user id (uuid)
+// Body: { userId: string }  ← the user's uuid (same id as auth.users)
 //
-// What it does:
-//   1. Verifies the requester is admin
-//   2. Updates status to "approved" in Supabase
-//   3. Updates Clerk publicMetadata so middleware lets them through
-//   4. Records approved_at timestamp
+// With Supabase Auth this is a single write. There is no second system
+// to keep in sync, so the client's access changes the moment this row
+// is updated — the middleware reads status from the database on every
+// protected request.
+
+export const runtime = "nodejs";
 
 export async function POST(req) {
   try {
-    // 1. Must be admin
-    await requireAdmin();
+    const admin = await requireAdmin();
 
-    const { userId } = await req.json();
+    const { userId } = await req.json().catch(() => ({}));
 
     if (!userId) {
-      return new Response(
-        JSON.stringify({ error: "userId is required" }),
-        { status: 400 }
-      );
+      return Response.json({ error: "userId is required" }, { status: 400 });
     }
 
-    // 2. Fetch the user from Supabase to get their clerk_id
-    const { data: user, error: fetchError } = await supabaseServer
+    const { data: user, error: fetchError } = await supabaseAdmin
       .from("users")
-      .select("id, clerk_id, email, status")
+      .select("id, email, status, role")
       .eq("id", userId)
       .single();
 
     if (fetchError || !user) {
-      return new Response(
-        JSON.stringify({ error: "User not found" }),
-        { status: 404 }
-      );
+      return Response.json({ error: "User not found" }, { status: 404 });
     }
 
     if (user.status === "approved") {
-      return new Response(
-        JSON.stringify({ error: "User is already approved" }),
+      return Response.json(
+        { error: "User is already approved" },
         { status: 400 }
       );
     }
 
-    // 3. Update status in Supabase
-    const { error: updateError } = await supabaseServer
+    // Never let an approve action change someone's role.
+    const { error: updateError } = await supabaseAdmin
       .from("users")
       .update({
-        status:      "approved",
+        status: "approved",
         approved_at: new Date().toISOString(),
       })
       .eq("id", userId);
 
     if (updateError) throw updateError;
 
-    // 4. Update Clerk publicMetadata so middleware grants access
-    const clerk = await clerkClient();
-    await clerk.users.updateUserMetadata(user.clerk_id, {
-      publicMetadata: {
-        role:   "client",
-        status: "approved",
-      },
-    });
+    console.log(`[admin] ${admin.email} approved ${user.email}`);
 
-    console.log(`✓ Client approved: ${user.email}`);
-
-    return new Response(
-      JSON.stringify({ success: true, message: `${user.email} has been approved.` }),
+    return Response.json(
+      { success: true, message: `${user.email} has been approved.` },
       { status: 200 }
     );
-
   } catch (err) {
-    // Handle thrown Response objects from requireAdmin()
     if (err instanceof Response) return err;
 
-    console.error("Approve client error:", err.message);
-    return new Response(
-      JSON.stringify({ error: "Failed to approve client" }),
+    console.error("[admin/approve-client] Failed:", err.message);
+    return Response.json(
+      { error: "Failed to approve client" },
       { status: 500 }
     );
   }
