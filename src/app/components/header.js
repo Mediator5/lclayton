@@ -24,7 +24,6 @@ const NAV_ITEMS = [
         href: "/services",
         submenuBefore: [
 
-            { label: "The Procurement Governance", href: "/services/the-procurement-governance" },
             { label: "Retirement Planning For Pre-Retirees", href: "/services/retirement-planning-for-pre-retirees" },
             { label: "Retirement Planning for Retired Individuals", href: "/services/retirement-planning-for-retired-individuals" },
             { label: "Tax Strategy", href: "/services/tax-strategy" },
@@ -35,10 +34,6 @@ const NAV_ITEMS = [
             { label: "Generational Wealth Transition", href: "/services/generational-wealth-transition" },
         ],
         submenu: [
-            {
-                label: "Procurement Governance",
-                href: "/services/the-procurement-governance",
-            },
             {
                 label: "Retirement Architecture",
                 href: "/services/retirement-planning-for-pre-retirees",
@@ -61,16 +56,7 @@ const NAV_ITEMS = [
             },
         ],
     },
-    {
-        label: "Resources",
-        href: "/resources",
-        submenu: [
-            { label: "Financial Calculators", href: "/calculator-library" },
-            { label: "Useful Links", href: "/useful-websites" },
-            { label: "Blogs", href: "/blog" },
-            { label: "LPL Weekly Market Commentary", href: "https://www.lpl.com/research/weekly-market-commentary.html" },
-        ],
-    },
+    { label: "Blog", href: "/blog" },
     { label: "Contact", href: "/contact" },
 ];
 

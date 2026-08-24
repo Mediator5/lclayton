@@ -193,6 +193,7 @@ function ContactMain() {
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [sendError, setSendError] = useState("");
 
   const set = (k, v) => {
     setForm((p) => ({ ...p, [k]: v }));
@@ -211,10 +212,32 @@ function ContactMain() {
   const handleSubmit = async () => {
     const e = validate();
     if (Object.keys(e).length) { setErrors(e); return; }
+    setErrors({});
+    setSendError("");
     setSending(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setSending(false);
-    setSent(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, source: "Contact page — Send Us a Message" }),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        if (data.errors) setErrors(data.errors);
+        setSendError(data.error || "Your message could not be sent. Please try again.");
+        return;
+      }
+
+      setSent(true);
+    } catch {
+      setSendError(
+        "We could not reach the server. Please email contact@lclaytonservicesinc.com or call 800-334-9809."
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   const inputBase = "w-full font-body text-sm bg-white border border-slate-200 rounded-xl px-4 py-3 text-navy placeholder-slate-400 outline-none transition-all duration-200 focus:border-gold/60 focus:ring-2 focus:ring-gold/10";
@@ -319,6 +342,19 @@ function ContactMain() {
                     className={`${inputBase} resize-none ${errors.message ? errBorder : ""}`} />
                   {errors.message && <p className="font-body text-red-500 text-xs mt-1">{errors.message}</p>}
                 </div>
+
+                {/* Honeypot — hidden from people, filled by bots */}
+                <input
+                  type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true"
+                  value={form.company || ""} onChange={(e) => set("company", e.target.value)}
+                  className="hidden" />
+
+                {/* Send failure */}
+                {sendError && (
+                  <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+                    <p className="font-body text-red-600 text-xs leading-relaxed">{sendError}</p>
+                  </div>
+                )}
 
                 {/* Submit */}
                 <button

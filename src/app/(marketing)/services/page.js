@@ -7,29 +7,14 @@ import Link from "next/link";
 
 const SERVICES = [
     {
-        id: "federal-employees",
-        number: "01",
-        title: "Federal Employees",
-        tag: "Specialty",
-        tagColor: "text-gold bg-gold/10",
-        summary: "We untangle the full complexity of your federal benefits package — FERS, TSP, FEGLI, CSRS, FEHB, and more — so you can make the most of every program available to you.",
-        body: "For federal employees, reviewing the various types of employment benefits offered by the federal government can be confusing. At L Clayton Services Inc. we will work with you to understand which retirement, financial planning, and investment strategies fit your needs. Whether your questions are regarding FERS, FEGLI, TSP, CSRS, or any other acronym, we are well-versed in your options and ready to help.",
-        href: "/services/federal-employees",
-        icon: (
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
-            </svg>
-        ),
-    },
-    {
         id: "pre-retirees",
-        number: "02",
+        number: "01",
         title: "Retirement Planning for Pre-Retirees",
         tag: "Planning",
         tagColor: "text-navy bg-navy/8",
         summary: "In your 40s and 50s, the decisions you make now will define what retirement looks like. We help you assess your nest egg, optimize contributions, and build a clear path to the retirement you want.",
         body: "How much do you have in savings and investments? Does your employer offer a pension plan? Do you have a long-term care policy ready? In your 40s and 50s, you should be thinking seriously about how well your nest egg is ready for success. We help you evaluate every variable and build a strategy to close the gap.",
-        href: "/services/pre-retirees",
+        href: "/services/retirement-planning-for-pre-retirees",
         icon: (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
@@ -38,13 +23,13 @@ const SERVICES = [
     },
     {
         id: "retirees",
-        number: "03",
+        number: "02",
         title: "Retirement Planning for Retired Individuals",
         tag: "Planning",
         tagColor: "text-navy bg-navy/8",
         summary: "You have reached the milestone. Now the focus is protecting what you have built, managing income efficiently, and leaving a legacy. We make sure your plan keeps working as hard as you did.",
         body: "You have successfully retired and settled into your golden years. Learning how to manage your money is a challenge that pays off with a comfortable quality of life — and the potential of leaving wealth behind for your loved ones. We help you navigate income management, tax efficiency, healthcare costs, and estate considerations.",
-        href: "/services/retirees",
+        href: "/services/retirement-planning-for-retired-individuals",
         icon: (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
@@ -53,7 +38,7 @@ const SERVICES = [
     },
     {
         id: "tax-strategy",
-        number: "04",
+        number: "03",
         title: "Tax Strategy",
         tag: "Tax",
         tagColor: "text-emerald-700 bg-emerald-50",
@@ -68,7 +53,7 @@ const SERVICES = [
     },
     {
         id: "estate-planning",
-        number: "05",
+        number: "04",
         title: "Estate Planning",
         tag: "Planning",
         tagColor: "text-navy bg-navy/8",
@@ -83,7 +68,7 @@ const SERVICES = [
     },
     {
         id: "wealth-management",
-        number: "06",
+        number: "05",
         title: "Wealth Management",
         tag: "Wealth",
         tagColor: "text-purple-700 bg-purple-50",
@@ -98,13 +83,13 @@ const SERVICES = [
     },
     {
         id: "small-business",
-        number: "07",
+        number: "06",
         title: "Small Business Retirement Plans",
         tag: "Specialty",
         tagColor: "text-gold bg-gold/10",
         summary: "SEP and SIMPLE IRAs give small business owners a powerful, low-cost way to offer employees meaningful retirement benefits — without the complexity and expense of a 401(k).",
         body: "The creation of the SEP and SIMPLE IRA affords smaller businesses a way to offer their employees a retirement plan. Designed for businesses with fewer than 100 employees, these plans are less costly to administer than a 401(k) and offer compelling tax advantages for both employers and employees. We help you choose the right structure and implement it correctly.",
-        href: "/services/small-business",
+        href: "/services/small-business-retirement-plans",
         icon: (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
@@ -113,7 +98,7 @@ const SERVICES = [
     },
     {
         id: "financial-planning",
-        number: "08",
+        number: "07",
         title: "Financial Planning",
         tag: "Planning",
         tagColor: "text-navy bg-navy/8",
@@ -128,13 +113,15 @@ const SERVICES = [
     },
     {
         id: "education-planning",
-        number: "09",
+        number: "08",
         title: "Education Planning",
         tag: "Planning",
         tagColor: "text-navy bg-navy/8",
         summary: "Like retirement, education planning must start long before the tuition bills arrive. We help you build a funding strategy for yourself or your children — well ahead of enrollment.",
         body: "Like Retirement Planning, which has to commence long before you enter into retirement, Education Planning — for yourself or your children — needs to occur well before mature learners or young scholars are poised to embrace higher education. We help you evaluate 529 plans, custodial accounts, and other vehicles to maximize what you set aside and minimize what you pay.",
-        href: "/services/education-planning",
+        // NOTE: there is no /services/education-planning page yet, so this
+        // card points at the contact form rather than a 404.
+        href: "/contact",
         icon: (
             <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
@@ -493,7 +480,7 @@ function HowItWorks() {
                     </div>
 
                     <div className={`flex justify-center mt-12 transition-all duration-700 ease-out delay-400 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-                        <Link href="/about/process"
+                        <Link href="/process"
                             className="inline-flex items-center gap-2 font-body text-slate-300 hover:text-gold
                          text-sm transition-colors duration-200 underline underline-offset-4
                          decoration-white/20 hover:decoration-gold/50">
@@ -542,7 +529,7 @@ function ServicesCTA() {
                            hover:-translate-y-0.5">
                                 Schedule a Consultation <ArrowRight />
                             </Link>
-                            <Link href="/about/process"
+                            <Link href="/process"
                                 className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full
                            border border-white/20 hover:border-white/40 text-white
                            font-body text-sm tracking-wide transition-all duration-300 hover:bg-white/5">

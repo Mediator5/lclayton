@@ -20,26 +20,22 @@ const QUICK_LINKS = [
         heading: "Company",
         links: [
             { label: "About the Firm", href: "/about" },
-            { label: "Our Fiduciary Philosophy", href: "/about/philosophy" },
-            { label: "The Governance Process", href: "/about/process" },
-            { label: "The Administrative Team", href: "/about/team" },
+            { label: "Our Values", href: "/value" },
+            { label: "The Governance Process", href: "/process" },
+            { label: "The Administrative Team", href: "/about/#team" },
         ],
     },
     {
         heading: "Services",
         links1: [
             { label: "Federal Employees", href: "/services/federal-employees" },
-            { label: "Retirement Planning", href: "/services/pre-retirees" },
+            { label: "Retirement Planning", href: "/services/retirement-planning-for-pre-retirees" },
             { label: "Tax Strategy", href: "/services/tax-strategy" },
             { label: "Estate Planning", href: "/services/estate-planning" },
             { label: "Wealth Management", href: "/services/wealth-management" },
         ],
-       
+
         links: [
-            {
-                label: "Procurement Governance",
-                href: "/services/the-procurement-governance",
-            },
             {
                 label: "Retirement Architecture",
                 href: "/services/retirement-planning-for-pre-retirees",
@@ -65,10 +61,10 @@ const QUICK_LINKS = [
     {
         heading: "Resources",
         links: [
-            { label: "Administrative Briefings", href: "/resources/blog" },
-            { label: "Structural Case Studies", href: "/resources/case-studies" },
-            { label: "Fiduciary Whitepapers", href: "/resources/whitepapers" },
-            { label: "Administrative Clarifications (FAQs)", href: "/resources/faqs" },
+            { label: "Administrative Briefings", href: "/blog" },
+            { label: "Who We Serve", href: "/who-we-serve" },
+            { label: "Our Process", href: "/process" },
+            { label: "Contact the Firm", href: "/contact" },
         ],
     },
 ];
@@ -113,21 +109,48 @@ const InstagramIcon = () => (
 export default function Footer() {
     const [form, setForm] = useState({ firstName: "", lastName: "", email: "", subject: "", message: "" });
     const [submitted, setSubmitted] = useState(false);
+    const [sending, setSending] = useState(false);
+    const [sendError, setSendError] = useState("");
     const [errors, setErrors] = useState({});
 
     const validate = () => {
         const e = {};
         if (!form.email) e.email = "Email is required";
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Enter a valid email address";
         if (!form.subject) e.subject = "Subject is required";
         if (!form.message) e.message = "Message is required";
         return e;
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const e = validate();
         if (Object.keys(e).length) { setErrors(e); return; }
         setErrors({});
-        setSubmitted(true);
+        setSendError("");
+        setSending(true);
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ ...form, source: "Footer — Initiate the Fiduciary Mandate" }),
+            });
+            const data = await res.json().catch(() => ({}));
+
+            if (!res.ok) {
+                if (data.errors) setErrors(data.errors);
+                setSendError(data.error || "Your message could not be sent. Please try again.");
+                return;
+            }
+
+            setSubmitted(true);
+        } catch {
+            setSendError(
+                "We could not reach the server. Please email contact@lclaytonservicesinc.com or call 800-334-9809."
+            );
+        } finally {
+            setSending(false);
+        }
     };
 
     const inputClass = (field) =>
@@ -226,15 +249,35 @@ export default function Footer() {
                                         {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
                                     </div>
 
+                                    {/* Honeypot — hidden from people, filled by bots */}
+                                    <input
+                                        type="text"
+                                        name="company"
+                                        tabIndex={-1}
+                                        autoComplete="off"
+                                        aria-hidden="true"
+                                        value={form.company || ""}
+                                        onChange={(e) => setForm({ ...form, company: e.target.value })}
+                                        className="hidden"
+                                    />
+
+                                    {sendError && (
+                                        <div className="bg-red-500/10 border border-red-400/30 rounded-xl px-4 py-3">
+                                            <p className="font-body text-red-300 text-xs leading-relaxed">{sendError}</p>
+                                        </div>
+                                    )}
+
                                     <button
                                         onClick={handleSubmit}
+                                        disabled={sending}
                                         className="w-full py-4 rounded-xl font-heading text-navy-deep text-sm font-bold
                                uppercase tracking-wider bg-gradient-to-r from-gold to-gold-light
                                hover:from-gold-light hover:to-gold
                                transition-all duration-300 hover:shadow-[0_8px_32px_rgba(201,168,76,0.3)]
-                               hover:-translate-y-0.5"
+                               hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed
+                               disabled:hover:translate-y-0 disabled:hover:shadow-none"
                                     >
-                                        SUBMIT GOVERNANCE INQUIRY
+                                        {sending ? "SENDING…" : "SUBMIT GOVERNANCE INQUIRY"}
                                     </button>
                                 </div>
                             )}

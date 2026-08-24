@@ -10,11 +10,13 @@ const isPublicRoute = createRouteMatcher([
   "/who-we-serve(.*)",
   "/blog(.*)",
   "/contact(.*)",
-  "/resources(.*)",
+  "/value(.*)",
+  "/process(.*)",
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/pending",
   "/api/webhooks(.*)",   // Clerk webhook must be public
+  "/api/contact",        // Public contact form endpoint
 ]);
 
 const isAdminRoute     = createRouteMatcher(["/admin(.*)"]);

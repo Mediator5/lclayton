@@ -140,7 +140,7 @@ export default function FiduciaryBanner() {
                             </svg>
                         </Link>
                         <Link
-                            href="/about/philosophy"
+                            href="/value"
                             className="inline-flex items-center gap-2 font-body text-slate-300 hover:text-white
                          text-sm transition-colors duration-200 underline underline-offset-4 decoration-white/20
                          hover:decoration-white/60"

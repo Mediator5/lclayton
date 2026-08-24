@@ -29,12 +29,50 @@ const VALUES = [
     },
 ];
 
+// ─── Professional Executive Bio (blue section) ────────────────────────────────
+
+const EXECUTIVE_BIO = [
+    "L. Clayton Services is a full-service financial, legal document, and advisory practice operating as a 508(c)(1)(A) tax-exempt faith-based organization. Dedicated to empowering private clients, community members, and public sector entities, the organization delivers comprehensive wealth protection, legal document execution, and administrative stewardship. Built on a foundation of technical rigor and leadership excellence, the practice brings over a decade and a half of specialized expertise across tax examination, financial risk management, estate planning, and public notarization.",
+    "The organization's foundational journey began in 2010 within the IRS Volunteer Income Tax Assistance (VITA) program, where technical mastery of federal tax law quickly transitioned into site management over a South Miami VITA facility. Following years of deep technical work as a Tax Examiner in the private sector, L. Clayton Services was established in 2015. Over the past decade, the organization has continually expanded its scope — integrating Notary Public services, life insurance and annuity protection models in 2018, and transitioning into a fully virtual estate planning operation in 2020.",
+    "Today, under its 508(c)(1)(A) organizational structure, L. Clayton Services remains steadfast in its commitment to continuous education, strategic team growth, and community outreach. The ministry and practice serve as a trusted bridge between private wealth preservation and public sector advocacy, delivering principled guidance tailored to the evolving needs of families, businesses, and institutions.",
+];
+
 const MILESTONES = [
-    { year: "2003", event: "Latravia begins his career as a financial advisor, building deep expertise in retirement and wealth planning." },
-    { year: "2007", event: "Recruited to the Washington D.C. area to lead a team of new financial advisors — sparking a passion for working with clients one-on-one." },
-    { year: "2009", event: "Latravia earns the CERTIFIED FINANCIAL PLANNER™  designation, cementing his commitment to professional excellence." },
-    { year: "2015", event: "L Clayton Services Inc is founded as an independent, 100% virtual practice built to deliver truly personalized financial guidance." },
-    { year: "Today", event: "Serving clients across multiple states with clarity, honesty, and a relentless focus on their long-term financial well-being." },
+    {
+        year: "2010",
+        title: "Tax Preparation Foundation & Technical Certification",
+        event: "Completed rigorous IRS Volunteer Income Tax Assistance (VITA) training, mastering individual federal tax law, return preparation, and IRS compliance standards.",
+    },
+    {
+        year: "2010 – 2011",
+        title: "Site Management & Program Leadership (South Miami)",
+        event: "Promoted to Site Manager overseeing a South Miami VITA facility. Directed site operations, supervised volunteer tax preparers, enforced IRS Quality Site Requirements (QSR), and performed final quality control reviews on tax filings.",
+    },
+    {
+        year: "2012",
+        title: "Private Sector Tax Analysis & Examination",
+        event: "Joined a private tax firm as a Tax Examiner, handling complex individual and business filing scenarios, advanced compliance reviews, and client representation support.",
+    },
+    {
+        year: "2015",
+        title: "Establishment of L. Clayton Services & Notary Commission",
+        event: "Founded L. Clayton Services, establishing an independent professional practice. Earned state commission as a Notary Public, expanding services to include legal document execution, verification, and administrative swearing.",
+    },
+    {
+        year: "2018",
+        title: "Wealth & Financial Risk Management Expansion",
+        event: "Expanded organizational offerings to include life insurance and annuity products, providing clients with tax-efficient wealth protection and financial risk management solutions.",
+    },
+    {
+        year: "2020",
+        title: "Digital Transformation & Comprehensive Estate Planning",
+        event: "Engineered a total digital transformation, converting L. Clayton Services into a 100% virtual operation. Launched comprehensive Estate Planning services (Wills, Irrevocable/Revocable Trusts, and asset protection structures) to ensure intergenerational wealth preservation.",
+    },
+    {
+        year: "Present",
+        title: "508(c)(1)(A) Organizational Structure & Dual-Sector Impact",
+        event: "Operating as a 508(c)(1)(A) tax-exempt faith-based organization, continuously enhancing capabilities through advanced education and strategic team growth to deliver principled tax, financial, and estate advisory across private and public sectors.",
+    },
 ];
 
 const TEAM = [
@@ -316,6 +354,18 @@ function OurCommitment() {
 
 // ─── Section 3: Timeline ──────────────────────────────────────────────────────
 
+function MilestoneCard({ m, className = "" }) {
+    return (
+        <div className={`ms-card bg-white/5 border border-white/10 rounded-2xl p-5 sm:max-w-xs w-full ${className}`}>
+            <div className="font-heading text-gold text-xl font-bold mb-1">{m.year}</div>
+            {m.title && (
+                <h3 className="font-heading text-white text-sm font-bold leading-snug mb-2">{m.title}</h3>
+            )}
+            <p className="font-body text-slate-300 text-sm leading-relaxed">{m.event}</p>
+        </div>
+    );
+}
+
 function OurTimeline() {
     const [ref, inView] = useInView(0.05);
 
@@ -333,16 +383,46 @@ function OurTimeline() {
             <section ref={ref} className="font-body tl-bg py-24 lg:py-32 overflow-hidden">
                 <div className="max-w-5xl mx-auto px-6 sm:px-10 lg:px-16">
 
-                    <div className={`text-center mb-16 transition-all duration-700 ease-out ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+                    <div className={`text-center mb-12 transition-all duration-700 ease-out ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
                         <div className="inline-flex items-center gap-3 mb-4 justify-center">
                             <span className="w-8 h-px bg-gold" />
-                            <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold">Our History</span>
+                            <span className="font-body text-gold text-xs uppercase tracking-[0.25em] font-bold">
+                                Professional Bio &amp; Career Timeline
+                            </span>
                             <span className="w-8 h-px bg-gold" />
                         </div>
                         <h2 className="font-heading text-white text-[clamp(1.8rem,3.5vw,2.8rem)] leading-tight">
-                            Over Two Decades of<br />
-                            <em className="not-italic text-gold">Purpose-Driven Planning</em>
+                            L. Clayton Services<br />
+                            <em className="not-italic text-gold">508(c)(1)(A) Faith-Based Organization</em>
                         </h2>
+                    </div>
+
+                    {/* ── Professional Executive Bio ──────────────────────────── */}
+                    <div className={`max-w-3xl mx-auto mb-16 transition-all duration-700 ease-out delay-100 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+                        <div className="inline-flex items-center gap-3 mb-5">
+                            <span className="w-6 h-px bg-gold/60" />
+                            <span className="font-body text-gold/90 text-[11px] uppercase tracking-[0.22em] font-bold">
+                                Professional Executive Bio
+                            </span>
+                        </div>
+                        <div className="flex flex-col gap-5">
+                            {EXECUTIVE_BIO.map((para, i) => (
+                                <p key={i} className="font-body text-slate-300 text-sm sm:text-[15px] leading-relaxed">
+                                    {para}
+                                </p>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* ── Detailed Career & Expertise Timeline ────────────────── */}
+                    <div className={`text-center mb-12 transition-all duration-700 ease-out delay-150 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+                        <div className="inline-flex items-center gap-3 justify-center">
+                            <span className="w-6 h-px bg-gold/60" />
+                            <span className="font-body text-gold/90 text-[11px] uppercase tracking-[0.22em] font-bold">
+                                Detailed Career &amp; Expertise Timeline
+                            </span>
+                            <span className="w-6 h-px bg-gold/60" />
+                        </div>
                     </div>
 
                     <div className="relative">
@@ -357,23 +437,20 @@ function OurTimeline() {
                                     {/* Desktop */}
                                     <div className="hidden sm:grid sm:grid-cols-2 w-full">
                                         <div className="pr-10 flex justify-end">
-                                            {even ? <div className="ms-card bg-white/5 border border-white/10 rounded-2xl p-5 max-w-xs w-full"><div className="font-heading text-gold text-2xl font-bold mb-1">{m.year}</div><p className="font-body text-slate-300 text-sm leading-relaxed">{m.event}</p></div> : <div />}
+                                            {even ? <MilestoneCard m={m} /> : <div />}
                                         </div>
                                         <div className="absolute left-1/2 -translate-x-1/2 top-5 z-10">
                                             <div className="w-3.5 h-3.5 rounded-full bg-gold border-[3px] border-navy-deep" />
                                         </div>
                                         <div className="pl-10 flex justify-start">
-                                            {!even ? <div className="ms-card bg-white/5 border border-white/10 rounded-2xl p-5 max-w-xs w-full"><div className="font-heading text-gold text-2xl font-bold mb-1">{m.year}</div><p className="font-body text-slate-300 text-sm leading-relaxed">{m.event}</p></div> : <div />}
+                                            {!even ? <MilestoneCard m={m} /> : <div />}
                                         </div>
                                     </div>
 
                                     {/* Mobile */}
                                     <div className="sm:hidden flex gap-5 w-full">
                                         <div className="mt-1.5 shrink-0"><div className="w-3.5 h-3.5 rounded-full bg-gold border-[3px] border-navy-deep" /></div>
-                                        <div className="ms-card bg-white/5 border border-white/10 rounded-2xl p-5 flex-1">
-                                            <div className="font-heading text-gold text-2xl font-bold mb-1">{m.year}</div>
-                                            <p className="font-body text-slate-300 text-sm leading-relaxed">{m.event}</p>
-                                        </div>
+                                        <MilestoneCard m={m} className="flex-1" />
                                     </div>
                                 </div>
                             );
