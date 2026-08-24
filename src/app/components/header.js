@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { createClient } from "@/lib/supabase/client";
 
 // ─── Navigation Data ──────────────────────────────────────────────────────────
 
@@ -229,7 +231,47 @@ function NavItem({ item }) {
 // ─── Header ───────────────────────────────────────────────────────────────────
 
 export default function Header() {
+    const router = useRouter();
     const [mobileOpen, setMobileOpen] = useState(false);
+
+    // ── Auth state ────────────────────────────────────────────────────
+    // Checked in the browser, not on the server, so the marketing pages
+    // stay statically rendered. A signed-out visitor costs nothing here:
+    // with no auth cookie, getUser() answers locally without a network call.
+    const [signedIn, setSignedIn] = useState(false);
+    const [signingOut, setSigningOut] = useState(false);
+
+    useEffect(() => {
+        const supabase = createClient();
+        let active = true;
+
+        supabase.auth.getUser().then(({ data }) => {
+            if (active) setSignedIn(Boolean(data?.user));
+        });
+
+        // Keeps the header honest if the user signs in or out in another tab,
+        // or when their session expires.
+        const {
+            data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (active) setSignedIn(Boolean(session?.user));
+        });
+
+        return () => {
+            active = false;
+            subscription?.unsubscribe();
+        };
+    }, []);
+
+    const handleSignOut = async () => {
+        setSigningOut(true);
+        const supabase = createClient();
+        await supabase.auth.signOut();
+        setMobileOpen(false);
+        router.push("/");
+        router.refresh();
+        setSigningOut(false);
+    };
     const [mobileExpanded, setMobileExpanded] = useState(null);
     const [scrolled, setScrolled] = useState(false);
 
@@ -293,14 +335,36 @@ export default function Header() {
 
                             <span className="hidden sm:block w-px h-4 bg-white/20" />
 
-                            <a
-                                href="/sign-in"
-                                className="flex items-center gap-1.5 bg-gold hover:bg-gold-muted
-                                           text-navy-deep font-semibold text-xs uppercase tracking-widest
-                                           px-4 py-1.5 rounded-full transition-all duration-200 hover:shadow-md"
-                            >
-                                Client Login
-                            </a>
+                            {signedIn ? (
+                                <div className="flex items-center gap-3">
+                                    <Link
+                                        href="/portal"
+                                        className="flex items-center gap-1.5 bg-gold hover:bg-gold-muted
+                                                   text-navy-deep font-semibold text-xs uppercase tracking-widest
+                                                   px-4 py-1.5 rounded-full transition-all duration-200 hover:shadow-md"
+                                    >
+                                        My Portal
+                                    </Link>
+                                    <button
+                                        onClick={handleSignOut}
+                                        disabled={signingOut}
+                                        className="text-slate-300 hover:text-white font-medium text-xs
+                                                   uppercase tracking-widest transition-colors duration-150
+                                                   disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {signingOut ? "Signing out…" : "Sign Out"}
+                                    </button>
+                                </div>
+                            ) : (
+                                <Link
+                                    href="/sign-in"
+                                    className="flex items-center gap-1.5 bg-gold hover:bg-gold-muted
+                                               text-navy-deep font-semibold text-xs uppercase tracking-widest
+                                               px-4 py-1.5 rounded-full transition-all duration-200 hover:shadow-md"
+                                >
+                                    Client Login
+                                </Link>
+                            )}
                         </div>
 
                     </div>
@@ -419,8 +483,8 @@ export default function Header() {
                             </div>
                         ))}
 
-                        {/* Mobile CTA */}
-                        <div className="pt-2">
+                        {/* Mobile CTA + portal access */}
+                        <div className="pt-2 flex flex-col gap-2">
                             <Link
                                 href="/contact"
                                 className="block text-center py-3 bg-navy hover:bg-navy-dark
@@ -429,6 +493,38 @@ export default function Header() {
                             >
                                 Get Started
                             </Link>
+
+                            {signedIn ? (
+                                <>
+                                    <Link
+                                        href="/portal"
+                                        className="block text-center py-3 bg-gold hover:bg-gold-muted
+                                                   text-navy-deep font-heading text-sm font-bold rounded-lg transition-colors"
+                                        onClick={() => setMobileOpen(false)}
+                                    >
+                                        My Portal
+                                    </Link>
+                                    <button
+                                        onClick={handleSignOut}
+                                        disabled={signingOut}
+                                        className="block w-full text-center py-3 border border-slate-200
+                                                   text-slate-600 hover:text-navy hover:border-slate-300
+                                                   font-body text-sm rounded-lg transition-colors
+                                                   disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {signingOut ? "Signing out…" : "Sign Out"}
+                                    </button>
+                                </>
+                            ) : (
+                                <Link
+                                    href="/sign-in"
+                                    className="block text-center py-3 bg-gold hover:bg-gold-muted
+                                               text-navy-deep font-heading text-sm font-bold rounded-lg transition-colors"
+                                    onClick={() => setMobileOpen(false)}
+                                >
+                                    Client Login
+                                </Link>
+                            )}
                         </div>
 
                     </div>
