@@ -4,7 +4,13 @@ import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import { AuthShell, authInput, AuthSubmit, AuthError } from "../auth-ui";
+import {
+  AuthShell,
+  authInput,
+  AuthSubmit,
+  AuthError,
+  PasswordField,
+} from "../auth-ui";
 
 function SignInForm() {
   const router = useRouter();
@@ -113,28 +119,23 @@ function SignInForm() {
           )}
         </div>
 
-        <div>
-          <label
-            htmlFor="password"
-            className="font-body text-slate-300 text-xs uppercase tracking-wider mb-1.5 block"
-          >
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            autoComplete="current-password"
-            value={form.password}
-            onChange={(e) => set("password", e.target.value)}
-            className={authInput(errors.password)}
-            placeholder="••••••••"
-          />
-          {errors.password && (
-            <p className="font-body text-red-300 text-xs mt-1.5">
-              {errors.password}
-            </p>
-          )}
-        </div>
+        <PasswordField
+          id="password"
+          label="Password"
+          value={form.password}
+          onChange={(e) => set("password", e.target.value)}
+          error={errors.password}
+          placeholder="Your password"
+          autoComplete="current-password"
+          action={
+            <Link
+              href="/forgot-password"
+              className="font-body text-gold hover:text-gold-light text-xs transition-colors"
+            >
+              Forgot password?
+            </Link>
+          }
+        />
 
         <AuthError message={formError} />
 

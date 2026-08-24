@@ -17,6 +17,12 @@ const PUBLIC_PREFIXES = [
   "/value",
   "/process",
   "/api/contact",
+
+  // Password recovery. These must stay reachable while signed out, and
+  // /reset-password guards itself by checking for a recovery session.
+  "/forgot-password",
+  "/reset-password",
+  "/auth/callback",
 ];
 
 // Signed-in users should not see these.

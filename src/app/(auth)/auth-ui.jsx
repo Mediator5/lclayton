@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -92,6 +93,111 @@ export function authInput(hasError) {
       : "border-white/15 focus:border-gold/60 focus:ring-2 focus:ring-gold/10",
   ].join(" ");
 }
+
+// ─── Password field with a show/hide toggle ───────────────────────
+// The eye button is type="button" so it never submits the form, and it
+// carries aria-pressed + an aria-label so screen readers announce both
+// what it does and which state it is in.
+//
+// `action` renders on the right of the label — used for "Forgot password?".
+
+export function PasswordField({
+  id,
+  label,
+  value,
+  onChange,
+  error,
+  placeholder,
+  autoComplete = "current-password",
+  action = null,
+}) {
+  const [visible, setVisible] = useState(false);
+
+  return (
+    <div>
+      <div className="flex items-baseline justify-between mb-1.5">
+        <label
+          htmlFor={id}
+          className="font-body text-slate-300 text-xs uppercase tracking-wider"
+        >
+          {label}
+        </label>
+        {action}
+      </div>
+
+      <div className="relative">
+        <input
+          id={id}
+          type={visible ? "text" : "password"}
+          autoComplete={autoComplete}
+          value={value}
+          onChange={onChange}
+          className={`${authInput(error)} pr-12`}
+          placeholder={placeholder}
+        />
+
+        <button
+          type="button"
+          onClick={() => setVisible((v) => !v)}
+          aria-label={visible ? "Hide password" : "Show password"}
+          aria-pressed={visible}
+          title={visible ? "Hide password" : "Show password"}
+          className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg
+                     text-slate-400 hover:text-gold hover:bg-white/5
+                     focus:outline-none focus:ring-2 focus:ring-gold/40
+                     transition-colors duration-200"
+        >
+          {visible ? <EyeOffIcon /> : <EyeIcon />}
+        </button>
+      </div>
+
+      {error && <p className="font-body text-red-300 text-xs mt-1.5">{error}</p>}
+    </div>
+  );
+}
+
+const EyeIcon = () => (
+  <svg
+    className="w-4.5 h-4.5"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.6"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+    />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"
+    />
+  </svg>
+);
+
+const EyeOffIcon = () => (
+  <svg
+    className="w-4.5 h-4.5"
+    width="18"
+    height="18"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.6"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M3.98 8.223A10.477 10.477 0 0 0 2.036 11.68a1.012 1.012 0 0 0 0 .639C3.423 16.49 7.36 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639a10.522 10.522 0 0 1-4.293 5.376M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.244-4.243m4.243 4.243L9.88 9.88"
+    />
+  </svg>
+);
 
 export function AuthError({ message }) {
   if (!message) return null;

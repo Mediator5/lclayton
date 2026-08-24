@@ -1,5 +1,6 @@
 import { requireAdmin } from "@/lib/auth";
 import { supabaseAdmin } from "@/lib/supabase/admin";
+import { sendApprovalEmail, mailIsConfigured } from "@/lib/mailer";
 
 // ─── POST /api/admin/approve-client ───────────────────────────────
 // Approves a pending client registration.
@@ -24,7 +25,7 @@ export async function POST(req) {
 
     const { data: user, error: fetchError } = await supabaseAdmin
       .from("users")
-      .select("id, email, status, role")
+      .select("id, email, full_name, status, role")
       .eq("id", userId)
       .single();
 
@@ -52,8 +53,36 @@ export async function POST(req) {
 
     console.log(`[admin] ${admin.email} approved ${user.email}`);
 
+    // The account is already approved at this point. If the notification
+    // fails, say so plainly rather than rolling anything back.
+    let emailed = false;
+    let emailError = null;
+
+    if (!mailIsConfigured) {
+      emailError = "SMTP is not configured, so no email was sent.";
+    } else if (!user.email) {
+      emailError = "This account has no email address on file.";
+    } else {
+      try {
+        await sendApprovalEmail({
+          email: user.email,
+          fullName: user.full_name,
+        });
+        emailed = true;
+      } catch (mailErr) {
+        console.error("[admin/approve-client] Approval email failed:", mailErr);
+        emailError = "The approval email could not be sent.";
+      }
+    }
+
     return Response.json(
-      { success: true, message: `${user.email} has been approved.` },
+      {
+        success: true,
+        emailed,
+        message: emailed
+          ? `${user.email} has been approved and notified by email.`
+          : `${user.email} has been approved. ${emailError} Let them know directly.`,
+      },
       { status: 200 }
     );
   } catch (err) {

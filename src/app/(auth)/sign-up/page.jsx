@@ -4,7 +4,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
-import { AuthShell, authInput, AuthSubmit, AuthError } from "../auth-ui";
+import {
+  AuthShell,
+  authInput,
+  AuthSubmit,
+  AuthError,
+  PasswordField,
+} from "../auth-ui";
 
 const MIN_PASSWORD = 8;
 
@@ -130,8 +136,26 @@ export default function SignUpPage() {
 
         {field("email", "Email Address", "email", "email", "you@example.com")}
         {field("phone", "Phone (optional)", "tel", "tel", "301-555-0100")}
-        {field("password", "Password", "password", "new-password", "At least 8 characters")}
-        {field("confirm", "Confirm Password", "password", "new-password", "Repeat your password")}
+
+        <PasswordField
+          id="password"
+          label="Password"
+          value={form.password}
+          onChange={(e) => set("password", e.target.value)}
+          error={errors.password}
+          placeholder="At least 8 characters"
+          autoComplete="new-password"
+        />
+
+        <PasswordField
+          id="confirm"
+          label="Confirm Password"
+          value={form.confirm}
+          onChange={(e) => set("confirm", e.target.value)}
+          error={errors.confirm}
+          placeholder="Repeat your password"
+          autoComplete="new-password"
+        />
 
         <AuthError message={formError} />
 
