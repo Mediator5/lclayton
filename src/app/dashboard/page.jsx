@@ -22,7 +22,7 @@ export default async function DashboardPage() {
   if (!user) redirect("/sign-in");
   if (user.status !== "approved") redirect("/pending");
 
-  const [nextAppointment, documentCounts] = await Promise.all([
+  const [nextAppointment, documentCounts, unreadMessages] = await Promise.all([
     supabaseAdmin
       .from("appointments")
       .select("starts_at, ends_at, topic, status")
@@ -38,7 +38,17 @@ export default async function DashboardPage() {
       .select("direction")
       .eq("owner_id", user.id)
       .is("deleted_at", null),
+
+    supabaseAdmin
+      .from("messages")
+      .select("id", { count: "exact", head: true })
+      .eq("client_id", user.id)
+      .eq("sender_role", "admin")
+      .is("read_at", null)
+      .is("deleted_at", null),
   ]);
+
+  const unread = unreadMessages.count ?? 0;
 
   const appointment = nextAppointment.data ?? null;
   const docs = documentCounts.data ?? [];
@@ -88,6 +98,30 @@ export default async function DashboardPage() {
           </>
         )}
       </div>
+
+      {/* Unread messages — only shown when there are some */}
+      {unread > 0 && (
+        <Link
+          href="/dashboard/messages"
+          className="flex items-center gap-4 bg-gold/10 border border-gold/30 hover:border-gold/50
+                     rounded-2xl p-5 mb-6 transition-colors group"
+        >
+          <span
+            className="w-10 h-10 rounded-full bg-gold text-navy-deep font-heading font-bold
+                       flex items-center justify-center shrink-0"
+          >
+            {unread}
+          </span>
+          <span className="min-w-0">
+            <span className="block font-heading text-navy text-sm font-bold">
+              {unread === 1 ? "You have a new message" : `You have ${unread} new messages`}
+            </span>
+            <span className="block font-body text-slate-500 text-xs mt-0.5 group-hover:text-navy transition-colors">
+              From L Clayton Services — read and reply →
+            </span>
+          </span>
+        </Link>
+      )}
 
       {/* Quick links */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">

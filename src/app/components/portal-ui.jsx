@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
@@ -8,16 +9,49 @@ import { createClient } from "@/lib/supabase/client";
 
 const CLIENT_TABS = [
   { href: "/dashboard", label: "Overview" },
+  { href: "/dashboard/messages", label: "Messages", badge: true },
   { href: "/dashboard/documents", label: "Documents" },
   { href: "/dashboard/appointments", label: "Appointments" },
 ];
 
 const ADMIN_TABS = [
   { href: "/admin", label: "Approvals" },
+  { href: "/admin/messages", label: "Messages", badge: true },
   { href: "/admin/appointments", label: "Diary" },
   { href: "/admin/documents", label: "Documents" },
   { href: "/admin/availability", label: "Office Hours" },
 ];
+
+// How many messages are waiting for whoever is signed in. Refreshed on
+// arrival and whenever the tab is brought back into view, so the badge
+// is right without polling in the background.
+function useUnreadCount() {
+  const [unread, setUnread] = useState(0);
+
+  const refresh = useCallback(async () => {
+    try {
+      const res = await fetch("/api/messages/read");
+      if (!res.ok) return;
+      const data = await res.json();
+      setUnread(Number(data.unread) || 0);
+    } catch {
+      /* a badge is never worth an error */
+    }
+  }, []);
+
+  useEffect(() => {
+    refresh();
+
+    const onVisible = () => {
+      if (document.visibilityState === "visible") refresh();
+    };
+
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, [refresh]);
+
+  return unread;
+}
 
 export function PortalShell({
   eyebrow,
@@ -30,6 +64,7 @@ export function PortalShell({
   const pathname = usePathname();
   const router = useRouter();
   const tabs = admin ? ADMIN_TABS : CLIENT_TABS;
+  const unread = useUnreadCount();
 
   const signOut = async () => {
     const supabase = createClient();
@@ -91,6 +126,11 @@ export function PortalShell({
                 }`}
               >
                 {tab.label}
+                {tab.badge && unread > 0 && !active && (
+                  <span className="ml-2 font-body text-[10px] font-bold bg-gold text-navy-deep rounded-full px-1.5 py-0.5">
+                    {unread}
+                  </span>
+                )}
               </Link>
             );
           })}
